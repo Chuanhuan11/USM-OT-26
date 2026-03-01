@@ -3077,11 +3077,26 @@ nav {
   /* Buttons */
   .btn {
     width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     padding: 1rem;
     display: block;
     box-sizing: border-box;
     margin-bottom: 0.5rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-countdown-title {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    padding: 0 1rem;
+    line-height: 1.5;
   }
 
   /* Interactive Elements */
