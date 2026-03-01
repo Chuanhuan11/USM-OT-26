@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Royal Court – Organizing Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Premium Page-Specific Overrides for the Team Page Header/Background */
+        body {
+            background: #110804;
+            background-image:
+                radial-gradient(circle at top right, rgba(42, 21, 10, 0.6), transparent 50%),
+                radial-gradient(circle at bottom left, rgba(20, 10, 30, 0.6), transparent 50%);
+            background-attachment: fixed;
+        }
+
+        #team-hero {
+            padding-top: 150px;
+            padding-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .team-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .team-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeUp 1.2s ease forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION (Copied from index.html) -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="images/OT LOGO.png" alt="OT Logo" class="nav-logo-icon" />
+                <span class="nav-logo-text">Knight's Valor<br>Quest for the Crown</span>
+            </a>
+            <input type="checkbox" id="mobileMenuCheck">
+            <label class="mobile-menu-toggle" for="mobileMenuCheck" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#tournaments">Tournaments</a></li>
+                <li><a href="index.html#schedule">Schedule</a></li>
+                <li><a href="index.html#prizes">Prizes</a></li>
+                <li><a href="index.html#chessboard">Play</a></li>
+                <li><a href="index.html#register">Register</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="team.html">My Team</a></li>
+                <li><a href="index.html#register" class="nav-cta">⚔ Enter Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- TEAM PAGE HERO -->
+    <section id="team-hero">
+        <h1 class="team-title">Our Royal Court</h1>
+        <div class="team-subtitle">The Visionaries of Knight's Valor</div>
+        <div class="hero-divider team-hero-divider">
+            <div class="hero-divider-line"></div>
+            <span class="hero-divider-icon team-hero-divider-icon">♛</span>
+            <div class="hero-divider-line"></div>
+        </div>
+    </section>
+
+    <!-- DEPARTMENT TABS -->
+    <div class="team-tabs-container">
+        <button class="team-tab active" onclick="showDepartment('top-committee')">Top Committee</button>
+        <button class="team-tab" onclick="showDepartment('arbiter')">Arbiter</button>
+        <button class="team-tab" onclick="showDepartment('swiss')">Swiss</button>
+        <button class="team-tab" onclick="showDepartment('design')">Design & Multimedia</button>
+        <button class="team-tab" onclick="showDepartment('technical')">Technical & Logistics</button>
+        <button class="team-tab" onclick="showDepartment('emcee')">Emcee & Protocol</button>
+        <button class="team-tab" onclick="showDepartment('sponsorship')">Sponsorship</button>
+        <button class="team-tab" onclick="showDepartment('publicity')">Publicity</button>
+        <button class="team-tab" onclick="showDepartment('registration')">Registration</button>
+    </div>
+
+    <!-- TEAM GRID SECTION -->
+    <main class="team-departments-wrapper">
+        <!-- 1. TOP COMMITTEE -->
+        <div id="top-committee" class="dept-section active">
+            <h2 class="dept-title">Top Committee</h2>
+            <div class="member-grid">
+                <!-- Chu Tuck Zhang -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Project Director</div>
+                    <div class="member-name">Chu Tuck Zhang</div>
+                </div>
+                <!-- Ivan Lim Zheng Xian -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Vice Project Director I</div>
+                    <div class="member-name">Ivan Lim Zheng Xian</div>
+                </div>
+                <!-- Tan Chuan Huan -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Vice Project Director II</div>
+                    <div class="member-name">Tan Chuan Huan</div>
+                </div>
+                <!-- Vernon Teng Dao Keng -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Secretary</div>
+                    <div class="member-name">Vernon Teng Dao Keng</div>
+                </div>
+                <!-- Meghan Leong Y-E -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Vice Secretary</div>
+                    <div class="member-name">Meghan Leong Y-E</div>
+                </div>
+                <!-- See Toh Yuin Yee -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Treasurer</div>
+                    <div class="member-name">See Toh Yuin Yee</div>
+                </div>
+                <!-- Lei Ai Qin -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Vice Treasurer</div>
+                    <div class="member-name">Lei Ai Qin</div>
+                </div>
+                <!-- Tang Qian Wei -->
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Creative Director</div>
+                    <div class="member-name">Tang Qian Wei</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ARBITER -->
+        <div id="arbiter" class="dept-section">
+            <h2 class="dept-title">Arbiter</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Choo Xuan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Abdul Rahim Bin Ahmad</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Brendan M Bernardo</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Nur Qamar Faris</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Ku Wei Han</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Wong Sze Keith</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Harriesh Thiagarajan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Syllynrry Effhevyll</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lew Tze Yuee</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lau Hong Chun</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Mohamad Hafizar</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Naveisheen A/L Sritharan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Ng Wei Hong</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SWISS -->
+        <div id="swiss" class="dept-section">
+            <h2 class="dept-title">Swiss</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Teoh Yixun</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Tan Wen Shyan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Lee Yi Xuan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Yan Ka Yin</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Yap Mei Ting</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Chong Jia Jing</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Yong Cai Ling</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Vu Le Yao</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Yew Jieen</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Ch'ng Bao Sheng</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. DESIGN -->
+        <div id="design" class="dept-section">
+            <h2 class="dept-title">Design & Multimedia</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Winwin Teo Kai Xian</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Lim Chee Hui</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Muhammad Firdaus</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Tan Chee Yi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Lai Rou Xin</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Teoh Yu Ming</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Wong Oi Kei</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Jamie Yap Pei Tian</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Oh Jin Hua</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Goh Pei Qi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Tan Li Ta</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. TECHNICAL -->
+        <div id="technical" class="dept-section">
+            <h2 class="dept-title">Technical & Logistics</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Chai Juan Zhe</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Leung Hui Min</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Tan Lay Kuan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Steven Elnathan Meliala</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Sia Wei Jiang</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Soo Toh Boon Han</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Liong Ee Theng</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Gan Shi Tao</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Wong Sam Yuan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Tan Zhen Jieh</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Teng Xue Ling</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. EMCEE -->
+        <div id="emcee" class="dept-section">
+            <h2 class="dept-title">Emcee & Protocol</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Lim Jie Shen</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Liong Chun Kit</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Lee Yan Xi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Chai Pei Ying</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Heng Shin</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Clara Wong Kye Jing</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lee Ching Ern</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Jonathan Jong Jia Jun</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Chiam Yat Shing</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. SPONSORSHIP -->
+        <div id="sponsorship" class="dept-section">
+            <h2 class="dept-title">Sponsorship</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Lim Wei Fong</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Chua Zheng Rong</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Yap Han Lim</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Wong Zi Yi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Soniyaha A/P A Ramesh</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Ho Mei Qi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Tan Yie Hern</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Jesqueen Ong Kah Yuet</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Pang Jiun Xin</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Cheong Lip Ken</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Low Yee Pin</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lee Jia Chiuan</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Eason Ong Jian Yu</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lim Yong Peng</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Muhammad Zahidi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. PUBLICITY -->
+        <div id="publicity" class="dept-section">
+            <h2 class="dept-title">Publicity</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">PIC</div>
+                    <div class="member-name">Tang Qian Wei</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Sub-PIC</div>
+                    <div class="member-name">Chu Tuck Zhang</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Agnes Kan Kar Wen</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Looi Er Xian</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Chen Yee Teng</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Yap Zhi Ying</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Lim Hui Ni</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Cha Jin Ye</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Chua Jie Siang</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Joey Lee Xin Pei</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Yap Kai Sheng</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Yeoh Chen Yuen</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. REGISTRATION -->
+        <div id="registration" class="dept-section">
+            <h2 class="dept-title">Registration</h2>
+            <div class="member-grid">
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-name">Tim Zhi Yi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Assistant HOD</div>
+                    <div class="member-name">Elson Ooi Yin Feng</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Yane Zi Yi</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Assistant HOD</div>
+                    <div class="member-name">Chee Yu Jun</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Senior Member</div>
+                    <div class="member-name">Ooi Min Him</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Gan Xiang Yee Lydia</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Jacqueline Teng Xue Ning</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Chung Yu Ping</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Leong Han Wen</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Lim Jun Yu</div>
+                </div>
+                <div class="member-photo-card">
+                    <div class="member-photo-frame"><img src="" alt=""></div>
+                    <div class="member-role">Junior Member</div>
+                    <div class="member-name">Kee Chun Wei</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SUPER FOOTER (Copied from index.html) -->
+    <footer class="footer-spaced">
+        <div class="footer-container">
+
+            <!-- Top 3 Columns -->
+            <div class="footer-top-grid">
+                <!-- Column 1: Contact -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contact Us:</h4>
+                    <a href="mailto:usmbnc@student.usm.my" class="footer-link">usmbnc@student.usm.my</a>
+                </div>
+
+                <!-- Column 2: Follow Us -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Follow Us:</h4>
+
+                    <!-- USM Bridge & Chess Club -->
+                    <div class="mb-1-5">
+                        <span class="footer-social-label">USM
+                            Bridge & Chess Club</span>
+                        <div class="footer-socials">
+                            <a href="https://www.instagram.com/usm_bridge_and_chess_club/" target="_blank"
+                                class="social-icon">
+                                <img src="images/logo/Insta.png" alt="Instagram">
+                            </a>
+                            <a href="https://www.facebook.com/USMBridgeNChessClub" target="_blank" class="social-icon">
+                                <img src="images/logo/Facebook (1).png" alt="Facebook">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- USM Chess Open Tournament -->
+                    <div>
+                        <span class="footer-social-label">USM
+                            Chess Open Tournament</span>
+                        <div class="footer-socials">
+                            <a href="https://www.instagram.com/usmchessopentournament/" target="_blank"
+                                class="social-icon">
+                                <img src="images/logo/Insta.png" alt="Instagram">
+                            </a>
+                            <a href="https://www.facebook.com/USMChessOpenTournament" target="_blank"
+                                class="social-icon">
+                                <img src="images/logo/Facebook (1).png" alt="Facebook">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Explore -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Explore More:</h4>
+                    <ul class="footer-explore-links">
+                        <li><a href="index.html#tournaments">Tournaments</a></li>
+                        <li><a href="index.html#schedule">Schedule</a></li>
+                        <li><a href="index.html#prizes">Prizes</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Center Logo Pill -->
+            <div class="footer-logo-pill">
+                <img src="images/logo/USM Logo color (1).png" alt="USM Logo" class="pill-logo usm-logo">
+                <img src="images/logo/logo BHEPA without backgroud (1).png" alt="BHEPA Logo"
+                    class="pill-logo bhepa-logo">
+                <div class="pill-divider"></div>
+                <img src="images/logo/CHESSCLUB Logo (2).png" alt="Chess Club Logo" class="pill-logo club-logo">
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-copyright">
+                © 2026 Kelab Bridge Dan Catur, Universiti Sains Malaysia. All rights reserved.<br>
+                Organised under the auspices of USM APEX & BHEPA USM.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Javascript to handle the Tab Switching Logic
+        function showDepartment(deptId) {
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.team-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Hide all department sections
+            const sections = document.querySelectorAll('.dept-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target department
+            setTimeout(() => {
+                document.getElementById(deptId).classList.add('active');
+            }, 50); // Small delay to allow fade out
+        }
+    </script>
+</body>
+
+</html>

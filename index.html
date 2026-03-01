@@ -1,0 +1,1214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knight's Valor: Quest for the Crown – USM 32nd Chess Open Tournament 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <!-- EMBER PARTICLES -->
+  <div id="embers"></div>
+
+  <!-- KNIGHT'S VALOR SPLASH SCREEN -->
+  <div id="splash" style="display: none;">
+    <img id="splashKnight" src="knight.png" alt="Splash Knight" />
+    <div class="splash-title">Knight's Valor</div>
+    <div class="splash-sub">Quest for the Crown</div>
+    <div class="splash-line"></div>
+    <div class="splash-tournament-title">
+      USM 32ND CHESS OPEN TOURNAMENT 2026</div>
+    <button class="splash-enter" id="enterBtn" onclick="enterSite()">⚜ Enter the Arena ⚜</button>
+  </div>
+  <script>
+    // PREVENT FLASH: Only show the splash screen if it's the first visit in this session.
+    // This script runs immediately during HTML parsing, before the page paints.
+    if (!sessionStorage.getItem('splashPlayed')) {
+      document.getElementById('splash').style.display = 'flex';
+    }
+  </script>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="images/OT LOGO.png" alt="OT Logo" class="nav-logo-icon" />
+        <span class="nav-logo-text">Knight's Valor<br>Quest for the Crown</span>
+      </a>
+      <!-- Mobile hamburger toggle -->
+      <input type="checkbox" id="mobileMenuCheck">
+      <label class="mobile-menu-toggle" for="mobileMenuCheck" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#tournaments">Tournaments</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#chessboard">Play</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="team.html">My Team</a></li>
+        <li><a href="#register" class="nav-cta">⚔ Enter Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-chess" id="heroChessBg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-sword-left">⚔</div>
+    <div class="hero-sword-right">⚔</div>
+
+    <div class="hero-content">
+      <div class="hero-organizer">Kelab Bridge Dan Catur · Universiti Sains Malaysia · Presents</div>
+      <div class="hero-subtitle">Knight's Valor</div>
+      <div class="hero-title-wrapper">
+        <div class="hero-title-main">Quest</div>
+        <div class="hero-title-sub">for the Crown</div>
+      </div>
+
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <span class="hero-divider-icon">♛</span>
+        <div class="hero-divider-line"></div>
+      </div>
+
+      <div class="hero-edition">USM 32nd Chess Open Tournament 2026 · Penang, Malaysia</div>
+
+      <!-- Countdown to Individual Tournament -->
+      <div class="countdown-wrapper" id="countdown">
+        <div class="countdown-item"><span class="countdown-num" id="cd-days">--</span><span
+            class="countdown-label">Days</span></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-hours">--</span><span
+            class="countdown-label">Hours</span></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-mins">--</span><span
+            class="countdown-label">Minutes</span></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item"><span class="countdown-num" id="cd-secs">--</span><span
+            class="countdown-label">Seconds</span></div>
+      </div>
+      <div class="hero-countdown-title">
+        COUNTING DOWN TO INDIVIDUAL TOURNAMENT · 6 JUNE 2026</div>
+
+      <div class="hero-dates">
+        <div class="hero-date-card">
+          <div class="hero-date-label">⚔ Individual Tournament</div>
+          <div class="hero-date-value">6 June 2026</div>
+          <div class="hero-date-type">Saturday · 7:30AM – 7:30PM</div>
+        </div>
+        <div class="hero-date-card">
+          <div class="hero-date-label">🛡 Team Tournament</div>
+          <div class="hero-date-value">7 June 2026</div>
+          <div class="hero-date-type">Sunday · 7:30AM – 6:30PM</div>
+        </div>
+        <div class="hero-date-card">
+          <div class="hero-date-label">📜 Early Bird Deadline</div>
+          <div class="hero-date-value">19 April 2026</div>
+          <div class="hero-date-type">Saturday · 11:59PM GMT+8</div>
+        </div>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#register" class="btn-primary">⚜ Register Now</a>
+        <a href="#tournaments" class="btn-secondary">View Details</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <span class="scroll-arrow">▼</span>
+    </div>
+  </section>
+
+  <!-- CREST BANNER -->
+  <div class="crest-banner">
+    <div class="crest-inner">
+      <div class="crest-item"><span class="crest-item-icon">🏛</span> Dewan Utama Pelajar, USM Penang</div>
+      <div class="crest-item"><span class="crest-item-icon">⚔</span> Swiss System · FIDE Rules</div>
+      <div class="crest-item"><span class="crest-item-icon">♟</span> Open to All Players · 8 Categories</div>
+      <div class="crest-item"><span class="crest-item-icon">🏆</span> Total Prize Pool: RM 2,000+</div>
+    </div>
+  </div>
+
+  <!-- TOURNAMENTS -->
+  <section id="tournaments">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">⚔ Two Great Battles Await</span>
+        <h2 class="section-title">The Tournaments</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="valor-quote reveal">
+        <p>Two days of battle. One eternal crown. Sharpen your mind, rally your forces, and prove your worth upon the
+          sacred board of 64 squares.</p>
+        <cite>— Knight's Valor: Quest for the Crown · USM 32nd Chess Open Tournament 2026</cite>
+      </div>
+
+      <div class="poster-container reveal">
+        <img src="OT MAIN POSTER_INDIVIDUAL.png" alt="Individual Poster" class="poster-image poster-left" />
+        <img src="OT MAIN POSTER_TEAM.png" alt="Team Poster" class="poster-image" />
+      </div>
+      <div class="tournament-grid">
+        <!-- Individual -->
+        <div class="tournament-card reveal-left">
+          <div class="card-banner card-banner-individual">
+            <div class="card-banner-chess" id="bannerChess1"></div>
+            <div class="card-banner-type">
+              <span class="banner-icon">♚</span>
+              <div class="banner-title">Individual</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-name">USM 32nd Chess Individual Open Tournament 2026</div>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">📅 Date</span>
+                <span class="info-value"><strong>6 June 2026</strong> (Saturday)</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">⏱ Time</span>
+                <span class="info-value"><strong>7:30AM – 7:30PM</strong> GMT+8</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">📍 Venue</span>
+                <span class="info-value">Dewan Utama Pelajar, USM</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">🎯 Format</span>
+                <span class="info-value">Swiss System, <strong>8 Rounds</strong></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">⏳ Time Control</span>
+                <span class="info-value">15min + 5sec/move</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">🏆 Categories</span>
+                <span class="info-value">Open, Ladies, IPTA/IPTS, U18, U15, U12</span>
+              </div>
+            </div>
+            <div class="info-item info-item-last">
+              <span class="info-label">🗓 Registration Closes</span>
+              <span class="info-value">Early Bird: <strong>19 Apr</strong> · Standard: <strong>17 May 2026</strong> or
+                200 participants</span>
+            </div>
+            <a href="https://docs.google.com/forms/d/1alBHFTWJEzbvU4OXnnHtWEYPxxvnpMnEpHpDpZPRzM0/viewform"
+              target="_blank" class="card-cta cta-individual">⚔ Register Individual</a>
+          </div>
+        </div>
+
+        <!-- Team -->
+        <div class="tournament-card reveal-right">
+          <div class="card-banner card-banner-team">
+            <div class="card-banner-chess" id="bannerChess2"></div>
+            <div class="card-banner-type">
+              <span class="banner-icon">♛</span>
+              <div class="banner-title">Team</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-name">USM 32nd Chess Team Open Tournament 2026</div>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">📅 Date</span>
+                <span class="info-value"><strong>7 June 2026</strong> (Sunday)</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">⏱ Time</span>
+                <span class="info-value"><strong>7:30AM – 6:30PM</strong> GMT+8</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">📍 Venue</span>
+                <span class="info-value">Dewan Utama Pelajar, USM</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">🎯 Format</span>
+                <span class="info-value">Swiss System, <strong>7 Rounds</strong></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">⏳ Time Control</span>
+                <span class="info-value">15min + 5sec/move</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">👥 Team Size</span>
+                <span class="info-value"><strong>4 players</strong> (no reserve)</span>
+              </div>
+            </div>
+            <div class="info-item info-item-last">
+              <span class="info-label">🏆 Categories</span>
+              <span class="info-value">Open, Ladies, IPTA/IPTS, U18, U12</span>
+            </div>
+            <a href="https://docs.google.com/forms/d/1ToxIA8Nt-zU8M_g6D4vcj6yoJ92zrKAAXzAW_iNpJu0/viewform"
+              target="_blank" class="card-cta cta-team">🛡 Register Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE GRAND GALLERY -->
+  <section id="gallery">
+    <div class="container-fluid">
+      <div class="section-header reveal-scale">
+        <span class="section-label">📸 Hall of Legends</span>
+        <h2 class="section-title">The Grand Gallery</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="gallery-marquee-wrapper">
+        <div class="gallery-track">
+          <!-- Image 1 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG20250607155641.jpg" alt="Tournament Hall Overview">
+            <div class="gallery-item-caption">The Field of Battle</div>
+          </div>
+          <!-- Image 2 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_1950.JPG" alt="Players Focused">
+            <div class="gallery-item-caption">Team Winners</div>
+          </div>
+          <!-- Image 3 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_20250607_150325.jpg" alt="Action on the Board">
+            <div class="gallery-item-caption">The Critical Move</div>
+          </div>
+          <!-- Image 4 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_2477.jpeg" alt="Intense Match">
+            <div class="gallery-item-caption">Individual Winners</div>
+          </div>
+          <!-- Image 5 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_3315.JPG" alt="Strategic Planning">
+            <div class="gallery-item-caption">Lucky Draw Winners</div>
+          </div>
+          <!-- Image 6 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_7377.JPG" alt="Tournament Atmosphere">
+            <div class="gallery-item-caption">Keep Calm Just Play</div>
+          </div>
+          <!-- DUPLICATED SET FOR SEAMLESS SCROLL -->
+          <!-- Image 1 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG20250607155641.jpg" alt="Tournament Hall Overview">
+            <div class="gallery-item-caption">The Field of Battle</div>
+          </div>
+          <!-- Image 2 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_1950.JPG" alt="Players Focused">
+            <div class="gallery-item-caption">Team Winners</div>
+          </div>
+          <!-- Image 3 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_20250607_150325.jpg" alt="Action on the Board">
+            <div class="gallery-item-caption">The Critical Move</div>
+          </div>
+          <!-- Image 4 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_2477.jpeg" alt="Intense Match">
+            <div class="gallery-item-caption">Individual Winners</div>
+          </div>
+          <!-- Image 5 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_3315.JPG" alt="Strategic Planning">
+            <div class="gallery-item-caption">Lucky Draw Winners</div>
+          </div>
+          <!-- Image 6 -->
+          <div class="gallery-item">
+            <img src="images/OT 2025/IMG_7377.JPG" alt="Tournament Atmosphere">
+            <div class="gallery-item-caption">Keep Calm Just Play</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">⏱ Plan Your Quest</span>
+        <h2 class="section-title">Tournament Schedule</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="schedule-tabs reveal">
+        <button class="tab-btn active" onclick="showTab('sched','individual')">⚔ Individual (6 Jun)</button>
+        <button class="tab-btn" onclick="showTab('sched','team')">🛡 Team (7 Jun)</button>
+      </div>
+
+      <div id="sched-individual" class="schedule-content active">
+        <div class="schedule-grid">
+          <div class="schedule-item highlight"><span class="schedule-time">7:30AM – 8:30AM</span><span
+              class="schedule-event">📝 Registration</span></div>
+          <div class="schedule-item highlight"><span class="schedule-time">8:30AM – 8:45AM</span><span
+              class="schedule-event">🎊 Opening Ceremony</span></div>
+          <div class="schedule-item"><span class="schedule-time">8:45AM – 9:00AM</span><span class="schedule-event">📋
+              Arbiter & Swiss Briefing + Q&A</span></div>
+          <div class="schedule-item"><span class="schedule-time">9:00AM – 10:00AM</span><span class="schedule-event">♟
+              Round 1</span></div>
+          <div class="schedule-item"><span class="schedule-time">10:00AM – 11:00AM</span><span class="schedule-event">♟
+              Round 2</span></div>
+          <div class="schedule-item"><span class="schedule-time">11:00AM – 12:00PM</span><span class="schedule-event">♟
+              Round 3</span></div>
+          <div class="schedule-item"><span class="schedule-time">12:00PM – 1:00PM</span><span class="schedule-event">♟
+              Round 4</span></div>
+          <div class="schedule-item break"><span class="schedule-time">1:00PM – 2:00PM</span><span
+              class="schedule-event">🍽 Lunch Break</span></div>
+          <div class="schedule-item"><span class="schedule-time">2:00PM – 3:00PM</span><span class="schedule-event">♟
+              Round 5</span></div>
+          <div class="schedule-item"><span class="schedule-time">3:00PM – 4:00PM</span><span class="schedule-event">♟
+              Round 6</span></div>
+          <div class="schedule-item"><span class="schedule-time">4:00PM – 5:00PM</span><span class="schedule-event">♟
+              Round 7</span></div>
+          <div class="schedule-item"><span class="schedule-time">5:00PM – 6:00PM</span><span class="schedule-event">♟
+              Round 8</span></div>
+          <div class="schedule-item break"><span class="schedule-time">6:00PM – 6:30PM</span><span
+              class="schedule-event">☕ Break Time</span></div>
+          <div class="schedule-item highlight"><span class="schedule-time">6:30PM – 7:30PM</span><span
+              class="schedule-event">🏆 Closing Ceremony & Prize Giving</span></div>
+        </div>
+      </div>
+
+      <div id="sched-team" class="schedule-content">
+        <div class="schedule-grid">
+          <div class="schedule-item highlight"><span class="schedule-time">7:30AM – 8:30AM</span><span
+              class="schedule-event">📝 Registration</span></div>
+          <div class="schedule-item highlight"><span class="schedule-time">8:30AM – 8:45AM</span><span
+              class="schedule-event">🎊 Opening Ceremony</span></div>
+          <div class="schedule-item"><span class="schedule-time">8:45AM – 9:00AM</span><span class="schedule-event">📋
+              Arbiter & Swiss Briefing + Q&A</span></div>
+          <div class="schedule-item"><span class="schedule-time">9:00AM – 10:00AM</span><span class="schedule-event">♟
+              Round 1</span></div>
+          <div class="schedule-item"><span class="schedule-time">10:00AM – 11:00AM</span><span class="schedule-event">♟
+              Round 2</span></div>
+          <div class="schedule-item"><span class="schedule-time">11:00AM – 12:00PM</span><span class="schedule-event">♟
+              Round 3</span></div>
+          <div class="schedule-item"><span class="schedule-time">12:00PM – 1:00PM</span><span class="schedule-event">♟
+              Round 4</span></div>
+          <div class="schedule-item break"><span class="schedule-time">1:00PM – 2:00PM</span><span
+              class="schedule-event">🍽 Lunch Break</span></div>
+          <div class="schedule-item"><span class="schedule-time">2:00PM – 3:00PM</span><span class="schedule-event">♟
+              Round 5</span></div>
+          <div class="schedule-item"><span class="schedule-time">3:00PM – 4:00PM</span><span class="schedule-event">♟
+              Round 6</span></div>
+          <div class="schedule-item"><span class="schedule-time">4:00PM – 5:00PM</span><span class="schedule-event">♟
+              Round 7</span></div>
+          <div class="schedule-item break"><span class="schedule-time">5:00PM – 5:30PM</span><span
+              class="schedule-event">☕ Break Time</span></div>
+          <div class="schedule-item highlight"><span class="schedule-time">5:30PM – 6:30PM</span><span
+              class="schedule-event">🏆 Closing Ceremony & Prize Giving</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIZES -->
+  <section id="prizes">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">🏆 Claim Your Glory</span>
+        <h2 class="section-title">Prize List</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="prizes-tabs reveal">
+        <button class="tab-btn active" onclick="showTab('prize','individual')">⚔ Individual</button>
+        <button class="tab-btn" onclick="showTab('prize','team')">🛡 Team</button>
+      </div>
+
+      <div id="prize-individual" class="prize-section active">
+        <!-- Podium -->
+        <div class="prize-podium reveal">
+          <div class="podium-item">
+            <div class="podium-place">1st Runner-Up</div>
+            <div class="podium-block podium-block-2nd">
+              <div class="podium-num">2</div>
+              <div class="podium-prize">RM 300</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+          <div class="podium-item">
+            <div class="podium-place">Champion 👑</div>
+            <div class="podium-block podium-block-1st">
+              <div class="podium-num">1</div>
+              <div class="podium-prize">RM 500</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+          <div class="podium-item">
+            <div class="podium-place">2nd Runner-Up</div>
+            <div class="podium-block podium-block-3rd">
+              <div class="podium-num">3</div>
+              <div class="podium-prize">RM 200</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+        </div>
+
+        <table class="prize-table reveal">
+          <thead>
+            <tr>
+              <th>Category & Place</th>
+              <th>Prize</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="prize-category-header">
+              <td colspan="2">🏆 Open Category</td>
+            </tr>
+            <tr>
+              <td>Champion</td>
+              <td>RM 500 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>1st Runner-Up</td>
+              <td>RM 300 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>2nd Runner-Up</td>
+              <td>RM 200 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>4th – 10th Place</td>
+              <td>RM 80–100 + Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">♀ Ladies Category</td>
+            </tr>
+            <tr>
+              <td>1st Place</td>
+              <td>RM 70 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>2nd Place</td>
+              <td>RM 60 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>3rd Place</td>
+              <td>RM 50 + Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">🎓 IPTA/IPTS · U18/U15/U12 Boys</td>
+            </tr>
+            <tr>
+              <td>1st–5th Place</td>
+              <td>Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">🌸 U18/U15/U12 Girls</td>
+            </tr>
+            <tr>
+              <td>1st–3rd Place</td>
+              <td>Medal + Certificate</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="prize-team" class="prize-section">
+        <div class="prize-podium reveal">
+          <div class="podium-item">
+            <div class="podium-place">1st Runner-Up</div>
+            <div class="podium-block podium-block-2nd">
+              <div class="podium-num">2</div>
+              <div class="podium-prize">RM 500</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+          <div class="podium-item">
+            <div class="podium-place">Champion 👑</div>
+            <div class="podium-block podium-block-1st">
+              <div class="podium-num">1</div>
+              <div class="podium-prize">RM 800</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+          <div class="podium-item">
+            <div class="podium-place">2nd Runner-Up</div>
+            <div class="podium-block podium-block-3rd">
+              <div class="podium-num">3</div>
+              <div class="podium-prize">RM 340</div>
+              <div class="podium-detail">Medal + Certificate</div>
+            </div>
+          </div>
+        </div>
+
+        <table class="prize-table reveal">
+          <thead>
+            <tr>
+              <th>Category & Place</th>
+              <th>Prize</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="prize-category-header">
+              <td colspan="2">🏆 Open Category</td>
+            </tr>
+            <tr>
+              <td>Champion</td>
+              <td>RM 800 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>1st Runner-Up</td>
+              <td>RM 500 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>2nd Runner-Up</td>
+              <td>RM 340 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>4th Place</td>
+              <td>RM 300 + Medal + Certificate</td>
+            </tr>
+            <tr>
+              <td>5th Place</td>
+              <td>RM 300 + Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">♀ Ladies Category</td>
+            </tr>
+            <tr>
+              <td>1st Place</td>
+              <td>RM 200 + Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">🎓 IPTA/IPTS · U18 · U12 Categories</td>
+            </tr>
+            <tr>
+              <td>1st–3rd Place</td>
+              <td>Medal + Certificate</td>
+            </tr>
+            <tr class="prize-category-header">
+              <td colspan="2">⭐ Special Prizes – Best Board Player</td>
+            </tr>
+            <tr>
+              <td>Board 1 – Top Player</td>
+              <td>Trophy + Certificate</td>
+            </tr>
+            <tr>
+              <td>Board 2 – Top Player</td>
+              <td>Trophy + Certificate</td>
+            </tr>
+            <tr>
+              <td>Board 3 – Top Player</td>
+              <td>Trophy + Certificate</td>
+            </tr>
+            <tr>
+              <td>Board 4 – Top Player</td>
+              <td>Trophy + Certificate</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">
+          * Each team may win ONE prize only (excluding Special Prizes). Prize list subject to change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE CHESSBOARD -->
+  <section id="chessboard">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">♟ Warm Up Your Pieces</span>
+        <h2 class="section-title">Play a Game</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="chess-container reveal">
+        <p class="chess-desc">
+          Test your mettle upon the sacred board. Click a piece to select it,<br>
+          then click a highlighted square to make your move. Face a worthy opponent in local 2-player mode.
+        </p>
+
+        <!-- Mode Toggle -->
+        <div class="chess-mode-toggle">
+          <button class="mode-btn active" id="btnClassicMode" onclick="setGameMode('classic')">Standard Chess</button>
+          <button class="mode-btn" id="btnDiceMode" onclick="setGameMode('dice')">Dice Chess</button>
+        </div>
+
+        <div class="chess-layout-wrapper">
+          <div class="chess-board-area">
+            <div id="chess-game">
+              <div class="chess-board" id="chessBoard"></div>
+            </div>
+            <div class="chess-status" id="chessStatus">White's Turn — Make Your Opening Move</div>
+            <div class="chess-controls">
+              <button class="chess-btn" onclick="resetChess()">⚔ New Game</button>
+              <button class="chess-btn" onclick="flipBoard()" title="Flip Board">🔄 Flip Board</button>
+            </div>
+          </div>
+
+          <!-- Dice Controls (Hidden in Classic Mode) -->
+          <div class="dice-panel" id="diceControls" style="display:none;">
+            <div class="dice-plate">
+              <!-- Dice 1 -->
+              <div class="scene">
+                <div class="cube" id="dice1">
+                  <div class="cube-face cube-face-front">♙</div>
+                  <div class="cube-face cube-face-back">♘</div>
+                  <div class="cube-face cube-face-right">♗</div>
+                  <div class="cube-face cube-face-left">♖</div>
+                  <div class="cube-face cube-face-top">♕</div>
+                  <div class="cube-face cube-face-bottom">♔</div>
+                </div>
+              </div>
+              <!-- Dice 2 -->
+              <div class="scene">
+                <div class="cube" id="dice2">
+                  <div class="cube-face cube-face-front">♙</div>
+                  <div class="cube-face cube-face-back">♘</div>
+                  <div class="cube-face cube-face-right">♗</div>
+                  <div class="cube-face cube-face-left">♖</div>
+                  <div class="cube-face cube-face-top">♕</div>
+                  <div class="cube-face cube-face-bottom">♔</div>
+                </div>
+              </div>
+              <!-- Dice 3 -->
+              <div class="scene">
+                <div class="cube" id="dice3">
+                  <div class="cube-face cube-face-front">♙</div>
+                  <div class="cube-face cube-face-back">♘</div>
+                  <div class="cube-face cube-face-right">♗</div>
+                  <div class="cube-face cube-face-left">♖</div>
+                  <div class="cube-face cube-face-top">♕</div>
+                  <div class="cube-face cube-face-bottom">♔</div>
+                </div>
+              </div>
+            </div>
+            <button class="dice-btn" id="rollDiceBtn" onclick="rollDice()">🎲 Roll Dice</button>
+            <div class="dice-result" id="diceResult">Roll to decide your fate...</div>
+          </div>
+        </div>
+
+        <!-- Chess Sounds -->
+        <audio id="moveSound" src="sounds/move.mp3"></audio>
+        <audio id="captureSound" src="sounds/capture.mp3"></audio>
+
+        <!-- Pawn Promotion Modal -->
+        <div id="promotionModal" class="chess-modal hide">
+          <div class="chess-modal-content">
+            <h3 class="chess-modal-title">Ascension Granted</h3>
+            <p>Choose your promotion:</p>
+            <div class="promo-options" id="promoOptions">
+              <!-- JS overrides these buttons based on color -->
+              <button class="promo-btn" onclick="processPromotion('Q')">♛</button>
+              <button class="promo-btn" onclick="processPromotion('R')">♜</button>
+              <button class="promo-btn" onclick="processPromotion('B')">♝</button>
+              <button class="promo-btn" onclick="processPromotion('N')">♞</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkmate/GameOver Modal -->
+        <div id="gameOverModal" class="chess-modal hide">
+          <div class="chess-modal-content">
+            <h3 class="chess-modal-title" id="gameOverTitle">Checkmate!</h3>
+            <p id="gameOverMsg" class="mb-1-5">White wins</p>
+            <button class="btn-secondary btn-wide" onclick="closeGameOverModal()">Close</button>
+            <button class="btn-primary btn-wide" onclick="closeGameOverModal(); resetChess();">Play Again</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION & FEES -->
+  <section id="register">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">📜 Pledge Your Allegiance</span>
+        <h2 class="section-title">Register & Fees</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="deadline-alert reveal">
+        ⏰ <strong>Early Bird Deadline: 19 April 2026</strong> — Register before then to save on fees!<br>
+        Standard registration closes <strong>17 May 2026</strong> or when slots fill up.
+      </div>
+
+      <div class="fee-section reveal">
+        <div class="fee-section-title">⚔ Individual Tournament Fees</div>
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Early Bird (before 19 Apr)</th>
+              <th>Normal (before 17 May)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PCA Member</td>
+              <td class="early-bird">RM 30</td>
+              <td>RM 35</td>
+            </tr>
+            <tr>
+              <td>Non-PCA Member</td>
+              <td class="early-bird">RM 35</td>
+              <td>RM 40</td>
+            </tr>
+            <tr>
+              <td>International</td>
+              <td class="early-bird">RM 60</td>
+              <td>RM 80</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="fee-section-title mt-2-5">🛡 Team Tournament Fees (per team of 4)</div>
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Early Bird (before 19 Apr)</th>
+              <th>Normal (before 17 May)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PCA Team (all 4 members PCA)</td>
+              <td class="early-bird">RM 80</td>
+              <td>RM 100</td>
+            </tr>
+            <tr>
+              <td>Non-PCA Team (≥1 non-PCA member)</td>
+              <td class="early-bird">RM 100</td>
+              <td>RM 120</td>
+            </tr>
+            <tr>
+              <td>International Team (≥1 international)</td>
+              <td class="early-bird">RM 160</td>
+              <td>RM 260</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul class="fee-notes mt-1 list-unstyled">
+          <li>* PCA = Penang Chess Association. Only PCA members of year 2026 are eligible for PCA rates.</li>
+          <li>* Late registration (after standard close): additional RM10 (Individual) / RM20 (Team).</li>
+          <li>* Refund requests must be made at least 2 weeks before the event; approved refunds processed within 3
+            months after the event.</li>
+          <li>* Walk-in registration is NOT permitted. All players must register online in advance.</li>
+        </ul>
+      </div>
+
+      <div class="payment-box reveal">
+        <h3>💳 Payment Details</h3>
+        <div class="payment-row"><span class="payment-label">Account Name</span><span class="payment-value">Universiti
+            Sains Malaysia</span></div>
+        <div class="payment-row"><span class="payment-label">Bank</span><span class="payment-value">CIMB Bank
+            Berhad</span></div>
+        <div class="payment-row"><span class="payment-label">Account Number</span><span
+            class="payment-value">98986101110942</span></div>
+        <div class="payment-row"><span class="payment-label">Reference</span><span class="payment-value">Your Name +
+            Tournament Type</span></div>
+      </div>
+
+      <div class="reg-buttons reveal">
+        <div class="reg-card">
+          <div class="reg-card-icon">♚</div>
+          <div class="reg-card-title">Individual Registration</div>
+          <div class="reg-card-desc">Register as a solo warrior for the Individual Open Tournament on 6 June 2026</div>
+          <a href="https://docs.google.com/forms/d/1alBHFTWJEzbvU4OXnnHtWEYPxxvnpMnEpHpDpZPRzM0/viewform"
+            target="_blank" class="reg-btn reg-btn-individual">⚔ Register Now</a>
+        </div>
+        <div class="reg-card">
+          <div class="reg-card-icon">♛</div>
+          <div class="reg-card-title">Team Registration</div>
+          <div class="reg-card-desc">Register your team of 4 for the Team Open Tournament on 7 June 2026</div>
+          <a href="https://docs.google.com/forms/d/1ToxIA8Nt-zU8M_g6D4vcj6yoJ92zrKAAXzAW_iNpJu0/viewform"
+            target="_blank" class="reg-btn reg-btn-team">🛡 Register Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-container">
+      <div class="section-header reveal">
+        <span class="section-label">📜 Seek Wisdom</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="faq-tabs reveal">
+        <button class="tab-btn active" onclick="showTab('faq','general')">General</button>
+        <button class="tab-btn" onclick="showTab('faq','individual')">Individual</button>
+        <button class="tab-btn" onclick="showTab('faq','team')">Team</button>
+      </div>
+
+      <div id="faq-general" class="faq-section active reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Who can participate in the tournament?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">The tournament is open to all players. Categories are available for Open, Ladies,
+            IPTA/IPTS (university students), U18, U15 (individual only), and U12. Age is determined as of 1st January
+            2026. A younger player may register for a higher-age group but not vice versa.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What are the tournament rules and time control?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">The tournament follows FIDE rules. Time control is 15 minutes + 5 seconds increment
+            per move for each player. Players must report attendance before 8:20AM. Players absent within 15 minutes of
+            game start lose by default.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Are mobile phones allowed in the playing hall?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">No. Mobile phones and any electronic communication devices are strictly prohibited in
+            the playing hall. Violation results in automatic loss of the game.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What is the dress code?<span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">Smart casual wear is required — collar shirts or T-shirts, jeans or skirts (for
+            ladies), and shoes. Skirts above the knee and slippers are NOT allowed.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What is the refund policy?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Refund requests must be submitted at least 2 weeks before the event. Approved refunds
+            will be processed and received at least 3 months after the event. Wrong payments will result in cancellation
+            of registration.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Is walk-in registration allowed?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">No. Walk-in registration is strictly NOT permitted. All participants must register
+            online before the closing date.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What is the PCA discount?<span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">PCA refers to the Penang Chess Association. Only members of PCA for year 2026 are
+            eligible for the discounted PCA rate. Malaysian nationals who are not PCA members are considered Non-PCA.
+            Non-Malaysian nationals are considered International participants.</div>
+        </div>
+      </div>
+
+      <div id="faq-individual" class="faq-section reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How many rounds are in the Individual tournament?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">The Individual tournament uses the Swiss System with 8 rounds (subject to number of
+            participants). Pairings are generated via the Swiss Manager Program.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What are the tiebreak criteria for Individual?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Tiebreaks are resolved in this order: (1) Direct Encounter, (2) Buchholz Tie-Break
+            Variable 2023 (0,0,1,-,-,0), (3) Buchholz Tie-Break Variable 2023 (0,0,0,-,-,0), (4) Sonneborn-Berger, (5)
+            FIDE Tiebreak (Progressive Score).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can a player win prizes in multiple categories?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">No. Each player may win only ONE prize. If a player qualifies for prizes in more than
+            one category, the hierarchy (Open &gt; Ladies &gt; IPTA/IPTS &gt; U18 &gt; U15 &gt; U12) applies.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What are the categories for Individual?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Categories: Open, Ladies, IPTA/IPTS, U18 Boys (U18B), U18 Girls (U18G), U15 Girls
+            (U15G), U12 Boys (U12B), U12 Girls (U12G). Cross-category pairings are possible during play.</div>
+        </div>
+      </div>
+
+      <div id="faq-team" class="faq-section reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How many players form a team?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Each team must consist of exactly 4 players. No reserve players are allowed. Players
+            must be registered in board order upon submission and board order cannot be changed after registration.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How many rounds are in the Team tournament?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">The Team tournament uses the Swiss System with 7 rounds. Pairings are generated via
+            the Swiss Manager Program and cross-age/cross-category pairings are possible.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How is team category determined if members are from
+            different categories?<span class="faq-toggle">+</span></div>
+          <div class="faq-answer">If team members belong to different categories, the team's category is determined by
+            the member with the highest priority category, following this order: Open &gt; Ladies &gt; IPTA/IPTS &gt;
+            U18 &gt; U12.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What are the tiebreak criteria for Team?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Tiebreaks: (1) Match Point (2 for Win, 1 for Draw, 0 for Loss), (2) Game Points, (3)
+            Buchholz Tie-Break Variable 2023 (0,0,0,-,-,0).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What happens if the whole team is absent?<span
+              class="faq-toggle">+</span></div>
+          <div class="faq-answer">Teams may be disqualified if the entire team is absent for 2 consecutive rounds.
+            Individual players absent within 15 minutes of game start lose by default (walkover).</div>
+        </div>
+      </div>
+
+      <div class="brochure-links reveal">
+        <a href="docs/OT 25_26 Individual Brochure .pdf" target="_blank" class="brochure-btn">
+          📖 Individual Brochure
+        </a>
+        <a href="docs/OT 25_26 Team Brochure.pdf" target="_blank" class="brochure-btn">
+          📖 Team Brochure
+        </a>
+        <a href="https://docs.google.com/forms/d/1alBHFTWJEzbvU4OXnnHtWEYPxxvnpMnEpHpDpZPRzM0/viewform" target="_blank"
+          class="brochure-btn">
+          📋 Individual Registration Form
+        </a>
+        <a href="https://docs.google.com/forms/d/1ToxIA8Nt-zU8M_g6D4vcj6yoJ92zrKAAXzAW_iNpJu0/viewform" target="_blank"
+          class="brochure-btn">
+          📋 Team Registration Form
+        </a>
+        <p class="fee-disclaimer table-note mt-1-5">
+          For full rules and regulations, please refer to the official brochures available upon registration.
+        </p>
+      </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">📩 Summon the Council</span>
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="contact-grid reveal">
+        <div class="contact-group">
+          <h3>⚔ Tournament Enquiries</h3>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Chu Tuck Zhang</div>
+              <div class="contact-phone">+60 10-234 7918</div>
+            </div>
+          </div>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Ivan Lim Zheng Xian</div>
+              <div class="contact-phone">+60 18-970 5688</div>
+            </div>
+          </div>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Tan Chuan Huan</div>
+              <div class="contact-phone">+60 18-473 6893</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-group">
+          <h3>📜 Registration Enquiries</h3>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Meghan Leong Y-E</div>
+              <div class="contact-phone">+60 10-366 1063</div>
+            </div>
+          </div>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Tim Zhi Yi</div>
+              <div class="contact-phone">+60 12-476 0587</div>
+            </div>
+          </div>
+          <div class="contact-person">
+            <span class="contact-icon">👤</span>
+            <div>
+              <div class="contact-name">Elson Ooi Yin Feng</div>
+              <div class="contact-phone">+60 17-431 7939</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-email-box reveal mt-3">
+        <div class="contact-email-label">
+          Official Email</div>
+        <a href="mailto:usmbnc@student.usm.my" class="contact-email-link">usmbnc@student.usm.my</a>
+        <div class="contact-email-note">
+          Kelab Bridge Dan Catur, Universiti Sains Malaysia<br>
+          Pusat Mahasiswa, Bangunan H21, Kompleks Cahaya Siswa, 11800 USM, Pulau Pinang
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS (MARQUEE) -->
+  <section id="sponsors">
+    <div class="container-fluid">
+      <div class="section-header reveal sponsors-header">
+        <span class="section-label">🤝 Allies in Our Quest</span>
+        <h2 class="section-title sponsors-title">Our Sponsors</h2>
+        <div class="section-ornament">
+          <div class="ornament-line sponsors-ornament-line"></div>
+          <div class="ornament-diamond sponsors-ornament-diamond"></div>
+          <div class="ornament-line sponsors-ornament-line"></div>
+        </div>
+      </div>
+
+      <div class="sponsor-marquee-wrapper">
+        <div class="sponsor-track">
+          <!-- ORIGINAL SET -->
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+1" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+2" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+3" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+4" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+5" alt="Sponsor"
+            class="sponsor-logo">
+
+          <!-- DUPLICATE SET FOR INFINITE SEAMLESS LOOP -->
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+1" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+2" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+3" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+4" alt="Sponsor"
+            class="sponsor-logo">
+          <img src="https://via.placeholder.com/300x120/120a06/C9A84C?text=Sponsor+5" alt="Sponsor"
+            class="sponsor-logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPER FOOTER -->
+  <footer>
+    <div class="footer-container">
+
+      <!-- Top 3 Columns -->
+      <div class="footer-top-grid">
+        <!-- Column 1: Contact -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact Us:</h4>
+          <a href="mailto:usmbnc@student.usm.my" class="footer-link">usmbnc@student.usm.my</a>
+        </div>
+
+        <!-- Column 2: Follow Us -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Follow Us:</h4>
+
+          <!-- USM Bridge & Chess Club -->
+          <div class="mb-1-5">
+            <span class="footer-social-label">USM
+              Bridge & Chess Club</span>
+            <div class="footer-socials">
+              <a href="https://www.instagram.com/usm_bridge_and_chess_club/" target="_blank" class="social-icon">
+                <img src="images/logo/Insta.png" alt="Instagram">
+              </a>
+              <a href="https://www.facebook.com/USMBridgeNChessClub" target="_blank" class="social-icon">
+                <img src="images/logo/Facebook (1).png" alt="Facebook">
+              </a>
+            </div>
+          </div>
+
+          <!-- USM Chess Open Tournament -->
+          <div>
+            <span class="footer-social-label">USM
+              Chess Open Tournament</span>
+            <div class="footer-socials">
+              <a href="https://www.instagram.com/usmchessopentournament/" target="_blank" class="social-icon">
+                <img src="images/logo/Insta.png" alt="Instagram">
+              </a>
+              <a href="https://www.facebook.com/USMChessOpenTournament" target="_blank" class="social-icon">
+                <img src="images/logo/Facebook (1).png" alt="Facebook">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Explore -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Explore More:</h4>
+          <ul class="footer-explore-links">
+            <li><a href="#tournaments">Tournaments</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#prizes">Prizes</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Center Logo Pill -->
+      <div class="footer-logo-pill">
+        <img src="images/logo/USM Logo color (1).png" alt="USM Logo" class="pill-logo usm-logo">
+        <img src="images/logo/logo BHEPA without backgroud (1).png" alt="BHEPA Logo" class="pill-logo bhepa-logo">
+        <div class="pill-divider"></div>
+        <img src="images/logo/CHESSCLUB Logo (2).png" alt="Chess Club Logo" class="pill-logo club-logo">
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copyright">
+        © 2026 Kelab Bridge Dan Catur, Universiti Sains Malaysia. All rights reserved.<br>
+        Organised under the auspices of USM APEX & BHEPA USM.
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
