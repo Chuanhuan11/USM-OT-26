@@ -122,9 +122,24 @@ function setGameMode(mode) {
   resetChess();
 }
 
+function playDiceSound() {
+  const moveSound = document.getElementById('moveSound');
+  if (!moveSound) return;
+  // Play the sound quickly a few times to simulate rolling dice pieces
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const clone = moveSound.cloneNode();
+      clone.volume = 0.3 + Math.random() * 0.4;
+      clone.play().catch(e => { }); // ignore autoplay errors if interaction is missing
+    }, i * 150 + Math.random() * 50);
+  }
+}
+
 function rollDice() {
   if (gameMode !== 'dice' || diceRolled) return;
   document.getElementById('rollDiceBtn').disabled = true;
+
+  playDiceSound();
 
   const pieces = { 1: 'P', 2: 'N', 3: 'B', 4: 'R', 5: 'Q', 6: 'K' };
   const names = { 1: 'Pawn', 2: 'Knight', 3: 'Bishop', 4: 'Rook', 5: 'Queen', 6: 'King' };
