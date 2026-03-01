@@ -3241,7 +3241,21 @@ nav {
     font-size: 1.4rem;
   }
 
-  /* Removed explicit width/height to fix grid overflow */
+  /* Splash Screen Very Small Mobile */
+  .splash-tournament-title {
+    font-size: 0.45rem;
+    letter-spacing: 0.1em;
+    padding: 0 0.5rem;
+  }
+
+  .splash-sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+  }
+
+  .splash-title {
+    font-size: 2rem;
+  }
 }
 
 /* ===== UTILITIES & SPECIFIC STYLES ADDED FOR CLEANUP ===== */
