@@ -3189,6 +3189,27 @@ nav {
     gap: 1.5rem;
     grid-template-columns: 1fr;
   }
+
+  /* Splash Screen Mobile */
+  .splash-tournament-title {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    padding: 0 1rem;
+    line-height: 1.5;
+  }
+
+  .splash-sub {
+    letter-spacing: 0.3em;
+  }
+
+  .splash-enter {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.8rem 1rem;
+    white-space: normal;
+    width: 90%;
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 480px) {
