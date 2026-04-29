@@ -115,6 +115,11 @@
         <!-- 1. TOP COMMITTEE -->
         <div id="top-committee" class="dept-section active">
             <h2 class="dept-title">Top Committee</h2>
+            <!-- Group photo: set src="images/team/top-committee.jpg" when ready -->
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/TopCommittee.JPG" alt="Top Committee Group Photo">
+                <span class="dept-photo-label">⚔ Top Committee · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <!-- Chu Tuck Zhang -->
                 <div class="member-photo-card">
@@ -170,6 +175,10 @@
         <!-- 2. ARBITER -->
         <div id="arbiter" class="dept-section">
             <h2 class="dept-title">Arbiter</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/Arbiter.JPG" alt="Arbiter Department Group Photo">
+                <span class="dept-photo-label">📋 Arbiter Department · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -242,6 +251,10 @@
         <!-- 3. SWISS -->
         <div id="swiss" class="dept-section">
             <h2 class="dept-title">Swiss</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/SWISS.jpg" alt="Swiss Department Group Photo">
+                <span class="dept-photo-label">⚙ Swiss Department · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -299,6 +312,11 @@
         <!-- 4. DESIGN -->
         <div id="design" class="dept-section">
             <h2 class="dept-title">Design & Multimedia</h2>
+            <div class="dept-photo-banner">
+                <img src="" alt="Design Department Group Photo">
+                <div class="dept-photo-placeholder">🎨<span>Group Photo Coming Soon</span></div>
+                <span class="dept-photo-label">🖌 Design & Multimedia · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -361,6 +379,10 @@
         <!-- 5. TECHNICAL -->
         <div id="technical" class="dept-section">
             <h2 class="dept-title">Technical & Logistics</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/TnL.JPG" alt="Technical Department Group Photo">
+                <span class="dept-photo-label">🔧 Technical &amp; Logistics · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -423,6 +445,10 @@
         <!-- 6. EMCEE -->
         <div id="emcee" class="dept-section">
             <h2 class="dept-title">Emcee & Protocol</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/E%26P.JPG" alt="Emcee Department Group Photo">
+                <span class="dept-photo-label">🎤 Emcee &amp; Protocol · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -475,6 +501,10 @@
         <!-- 7. SPONSORSHIP -->
         <div id="sponsorship" class="dept-section">
             <h2 class="dept-title">Sponsorship</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/Sponsorship.JPG" alt="Sponsorship Department Group Photo">
+                <span class="dept-photo-label">💼 Sponsorship · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -557,6 +587,10 @@
         <!-- 8. PUBLICITY -->
         <div id="publicity" class="dept-section">
             <h2 class="dept-title">Publicity</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/Publicity.jpeg" alt="Publicity Department Group Photo">
+                <span class="dept-photo-label">📣 Publicity · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -624,6 +658,10 @@
         <!-- 9. REGISTRATION -->
         <div id="registration" class="dept-section">
             <h2 class="dept-title">Registration</h2>
+            <div class="dept-photo-banner">
+                <img src="images/Committee%20Department%20Photo/Registration.JPG" alt="Registration Department Group Photo">
+                <span class="dept-photo-label">✅ Registration · Knight's Valor 2026</span>
+            </div>
             <div class="member-grid">
                 <div class="member-photo-card">
                     <div class="member-photo-frame"><img src="" alt=""></div>
@@ -764,25 +802,30 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Javascript to handle the Tab Switching Logic
+        // Tab Switching — CSS handles the fade via .active class (opacity+transform)
+        // No display:none/block toggling = footer never jumps
         function showDepartment(deptId) {
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.team-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Add active class to clicked tab
+            // Update tab active state
+            document.querySelectorAll('.team-tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Hide all department sections
-            const sections = document.querySelectorAll('.dept-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+            // Get current active section and target
+            const current = document.querySelector('.dept-section.active');
+            const target = document.getElementById(deptId);
 
-            // Show target department
-            setTimeout(() => {
-                document.getElementById(deptId).classList.add('active');
-            }, 50); // Small delay to allow fade out
+            if (!target || current === target) return;
+
+            // Fade out current
+            if (current) current.classList.remove('active');
+
+            // Fade in target — tiny delay gives browser time to start the fade-out
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    target.classList.add('active');
+                    // Scroll to top of departments wrapper smoothly
+                    target.closest('.team-departments-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
         }
     </script>
 </body>

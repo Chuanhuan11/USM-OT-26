@@ -682,7 +682,7 @@ if (galleryWrapper) {
   // Auto-scroller loop
   function autoScrollGallery() {
     if (!isHovered && !isDragging) {
-      galleryWrapper.scrollLeft += 2.5;
+      galleryWrapper.scrollLeft += 1;
     }
 
     // Reset scroll position for seamless loop in BOTH directions
@@ -711,3 +711,170 @@ document.addEventListener('click', (e) => {
     checkbox.checked = false;
   }
 });
+
+// ===== PAGE TRANSITIONS =====
+(function () {
+  const SIGILS = ['♛', '♞', '♜', '♝', '♚', '♟'];
+  const PANEL_COUNT = 4;
+
+  // Detect touch/mobile
+  const isMobile = () => window.innerWidth <= 768 || ('ontouchstart' in window);
+
+  // Build the overlay DOM once
+  function buildOverlay() {
+    if (document.getElementById('page-transition-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'page-transition-overlay';
+    for (let i = 0; i < PANEL_COUNT; i++) {
+      const panel = document.createElement('div');
+      panel.className = 'pt-panel';
+      overlay.appendChild(panel);
+    }
+
+    const sigil = document.createElement('div');
+    sigil.className = 'pt-sigil';
+    sigil.id = 'pt-sigil';
+    sigil.textContent = SIGILS[Math.floor(Math.random() * SIGILS.length)];
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(sigil);
+  }
+
+  // Cover screen → then navigate
+  function transitionOut(href) {
+    const overlay = document.getElementById('page-transition-overlay');
+    const sigil = document.getElementById('pt-sigil');
+    if (!overlay) { window.location.href = href; return; }
+
+    const mobile = isMobile();
+
+    // Randomise sigil — hide on very small screens
+    sigil.textContent = SIGILS[Math.floor(Math.random() * SIGILS.length)];
+    sigil.style.display = window.innerWidth <= 400 ? 'none' : '';
+
+    // Trigger cover
+    overlay.classList.remove('is-revealing');
+    void overlay.offsetWidth; // Force reflow
+    overlay.classList.add('is-covering');
+
+    // Show sigil slightly after (skip on tiny screens)
+    if (window.innerWidth > 400) {
+      setTimeout(() => sigil.classList.add('visible'), mobile ? 100 : 150);
+    }
+
+    // Mobile: faster panels (0.12s delay + 0.28s = 0.4s total), navigate at 440ms
+    // Desktop: 0.15s delay + 0.35s = 0.5s total, navigate at 560ms
+    const navigateDelay = mobile ? 440 : 560;
+    setTimeout(() => {
+      window.location.href = href;
+    }, navigateDelay);
+  }
+
+  // Reveal screen on page load
+  function transitionIn() {
+    const overlay = document.getElementById('page-transition-overlay');
+    const sigil = document.getElementById('pt-sigil');
+    if (!overlay) return;
+
+    // Start fully covered
+    overlay.classList.add('is-covering');
+    void overlay.offsetWidth; // Force reflow
+
+    // Then reveal
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        overlay.classList.remove('is-covering');
+        overlay.classList.add('is-revealing');
+        if (sigil) sigil.classList.remove('visible');
+      });
+    });
+  }
+
+  // Touch ripple feedback on tapped links (mobile only)
+  function addTouchFeedback() {
+    document.addEventListener('touchstart', (e) => {
+      const anchor = e.target.closest('a, button');
+      if (!anchor) return;
+      anchor.style.transition = 'opacity 0.1s';
+      anchor.style.opacity = '0.75';
+      setTimeout(() => { anchor.style.opacity = ''; }, 200);
+    }, { passive: true });
+  }
+
+  // Intercept anchor clicks that go to a different page (not #anchors)
+  function interceptLinks() {
+    document.addEventListener('click', (e) => {
+      const anchor = e.target.closest('a[href]');
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+
+      // Ignore: same-page hash links, external links, downloads, javascript:
+      if (
+        href.startsWith('#') ||
+        href.startsWith('javascript') ||
+        href.startsWith('mailto') ||
+        href.startsWith('tel') ||
+        anchor.target === '_blank' ||
+        anchor.hasAttribute('download')
+      ) return;
+
+      // Only intercept relative links to our own HTML pages
+      if (
+        href.startsWith('index.html') ||
+        href.startsWith('team.html') ||
+        href === './' ||
+        href === '.'
+      ) {
+        e.preventDefault();
+        transitionOut(href);
+      }
+    });
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    buildOverlay();
+    interceptLinks();
+    addTouchFeedback();
+    // Small timeout so CSS has been applied before we run the reveal
+    setTimeout(transitionIn, isMobile() ? 30 : 50);
+  });
+})();
+
+// ===== IMAGE PROTECTION =====
+(function () {
+  function protectImages() {
+    // Block right-click "Save Image As" on all images
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Block drag-to-desktop / drag-to-tab on all images
+    document.addEventListener('dragstart', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Block long-press save on Android Chrome
+    document.addEventListener('touchstart', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.target.addEventListener('touchend', (ev) => ev.preventDefault(), { once: true });
+      }
+    }, { passive: true });
+  }
+
+  // Run immediately if DOM is ready, otherwise wait
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', protectImages);
+  } else {
+    protectImages();
+  }
+})();

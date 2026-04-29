@@ -24,6 +24,24 @@
   box-sizing: border-box;
 }
 
+/* ===== IMAGE PROTECTION ===== */
+img {
+  /* Disable drag-to-save */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  /* Prevent text-selection highlight over images */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  /* Prevent long-press context menu on iOS */
+  -webkit-touch-callout: none;
+  /* Pointer events stay on so hover effects work */
+  pointer-events: auto;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -616,6 +634,8 @@ section::after {
   overflow: hidden;
   position: relative;
   transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
 }
 
 .tournament-card::before {
@@ -682,7 +702,7 @@ section::after {
 
 .banner-title {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   font-weight: 700;
   background: linear-gradient(180deg, var(--gold-light), var(--gold));
   -webkit-background-clip: text;
@@ -692,11 +712,14 @@ section::after {
 
 .card-content {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-name {
   font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--parchment);
   margin-bottom: 1.5rem;
@@ -712,7 +735,7 @@ section::after {
 
 .info-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold-dark);
@@ -721,7 +744,7 @@ section::after {
 }
 
 .info-value {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--parchment);
   font-style: italic;
 }
@@ -736,7 +759,8 @@ section::after {
   display: block;
   width: 100%;
   font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
+  margin-top: auto;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 0.9rem;
@@ -2256,6 +2280,29 @@ nav {
 }
 
 /* brochure link update */
+.brochure-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding: 0 1rem;
+}
+
+/* Docs-only row: 3 equal buttons centred */
+.brochure-links--docs {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brochure-links--docs .brochure-btn {
+  flex: 1 1 240px;
+  max-width: 280px;
+  text-align: center;
+  justify-content: center;
+}
+
 .brochure-btn {
   border-radius: 2px;
 }
@@ -2582,15 +2629,32 @@ nav {
 .team-departments-wrapper {
   max-width: 1300px;
   margin: 0 auto 5rem;
+  /* Fixed min-height prevents footer from jumping when switching tabs */
+  min-height: 600px;
+  position: relative;
 }
 
+/* 
+  FIX: Use opacity + pointer-events instead of display:none/block.
+  This keeps the wrapper's height stable so the footer never jumps.
+*/
 .dept-section {
-  display: none;
-  animation: fadeUpIn 0.5s ease forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  /* Don't animate display — let it stay rendered */
 }
 
 .dept-section.active {
-  display: block;
+  position: relative; /* back in flow so wrapper grows to fit */
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .dept-title {
@@ -2598,8 +2662,85 @@ nav {
   font-family: 'Cinzel Decorative', serif;
   font-size: 2.5rem;
   color: var(--gold);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-shadow: 0 0 15px rgba(201, 168, 76, 0.3);
+}
+
+.dept-photo-banner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(201, 168, 76, 0.1);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dept-photo-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.dept-photo-banner:hover img {
+  transform: scale(1.03);
+}
+
+/* Gradient overlay on photo */
+.dept-photo-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(10, 6, 4, 0.7) 0%, transparent 50%),
+    linear-gradient(to bottom, rgba(10, 6, 4, 0.3) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Hide empty images so the placeholder takes over */
+.dept-photo-banner img[src=""] {
+  display: none;
+}
+
+.dept-photo-banner .dept-photo-label {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.5rem;
+  z-index: 2;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.8);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+/* Empty-state placeholder (when no image is provided) */
+.dept-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: rgba(201, 168, 76, 0.2);
+  font-size: 3rem;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+}
+
+.dept-photo-placeholder span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.2);
 }
 
 @keyframes fadeUpIn {
@@ -3405,4 +3546,1169 @@ nav {
 
 .footer-spaced {
   margin-top: 100px;
+}
+
+/* ===== PAGE TRANSITIONS ===== */
+/* The curtain overlay that sweeps across the screen */
+#page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-panel {
+  flex: 1;
+  background: linear-gradient(135deg, var(--crimson-dark) 0%, #0d0804 40%, var(--gold-dark) 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+  /* Fully remove from rendering when not active — fixes ghost/blur over nav */
+  visibility: hidden;
+}
+
+.pt-panel:nth-child(1) { transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1) 0s; }
+.pt-panel:nth-child(2) { transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1) 0.05s; }
+.pt-panel:nth-child(3) { transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1) 0.10s; }
+.pt-panel:nth-child(4) { transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1) 0.15s; }
+
+/* When covering the screen (page-exit) */
+#page-transition-overlay.is-covering .pt-panel {
+  transform: scaleY(1);
+  transform-origin: top;
+  visibility: visible;
+}
+
+/* When revealing (page-enter) — panels retract upward */
+#page-transition-overlay.is-revealing .pt-panel {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  visibility: visible;
+}
+
+/* The chess piece sigil shown during transition */
+.pt-sigil {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 100000;
+  font-size: 5rem;
+  color: var(--gold);
+  filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.9));
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
+              opacity 0.3s ease 0.2s;
+  opacity: 0;
+}
+
+.pt-sigil.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Page body fade-in on load */
+body {
+  animation: pageBodyIn 0.6s ease 0.1s both;
+}
+
+@keyframes pageBodyIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================
+   ✨ PREMIUM VISUAL ENHANCEMENTS
+   ============================================= */
+
+/* ----- NAV: animated gold bottom shimmer ----- */
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-shine), var(--gold), transparent);
+  animation: navShimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes navShimmer {
+  0%   { left: -60%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 160%; opacity: 0; }
+}
+
+/* ----- HERO: floating chess piece watermarks ----- */
+#hero::after {
+  content: '♛  ♞  ♜  ♝  ♟';
+  position: absolute;
+  bottom: 8%;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 3rem;
+  color: var(--gold);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 3;
+  animation: floatRow 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatRow {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-12px); }
+}
+
+/* ----- HERO: date cards glassmorphism upgrade ----- */
+.hero-date-card {
+  background: rgba(20, 10, 6, 0.55) !important;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(201, 168, 76, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,229,153,0.15);
+}
+
+.hero-date-card:hover {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.7), 0 0 20px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,229,153,0.2) !important;
+}
+
+/* ----- HERO: CTA button shimmer animation ----- */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  animation: btnShimmer 3s ease-in-out infinite;
+}
+
+@keyframes btnShimmer {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: 125%; }
+}
+
+/* ----- CREST BANNER: crest item hover lift ----- */
+.crest-item {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.crest-item:hover {
+  transform: translateY(-3px);
+  color: var(--gold-light);
+}
+
+.crest-item:hover .crest-item-icon {
+  filter: drop-shadow(0 0 8px var(--gold));
+}
+
+/* ----- TOURNAMENT CARDS: animated perimeter shimmer border ----- */
+@keyframes borderRotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.tournament-card::before {
+  background-size: 300% 300%;
+  animation: borderRotate 4s ease infinite;
+}
+
+.tournament-card:hover {
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.8),
+    0 0 60px rgba(201,168,76,0.35),
+    inset 0 0 25px rgba(201,168,76,0.08) !important;
+}
+
+/* card top shimmer line */
+.card-content::before {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: width 0.6s ease;
+  margin-bottom: 1.5rem;
+}
+
+.tournament-card:hover .card-content::before {
+  width: 100%;
+}
+
+/* ----- SECTION HEADERS: glow on label ----- */
+.section-label {
+  transition: text-shadow 0.3s;
+}
+
+.section-header:hover .section-label {
+  text-shadow: 0 0 12px rgba(201,168,76,0.6);
+}
+
+.section-title {
+  transition: filter 0.3s;
+}
+
+.section-header:hover .section-title {
+  filter: drop-shadow(0 0 16px rgba(201,168,76,0.4));
+}
+
+/* ----- SCHEDULE: hover left-border pulse ----- */
+.schedule-item {
+  transition: all 0.3s ease, border-left-color 0.3s ease;
+}
+
+.schedule-item:hover {
+  border-left-color: var(--gold) !important;
+  transform: translateX(5px);
+  background: rgba(42, 31, 26, 0.95) !important;
+}
+
+/* ----- PRIZE PODIUM: champion glow upgrade ----- */
+.podium-block-1st {
+  animation: championPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes championPulse {
+  from {
+    box-shadow: 0 0 20px rgba(201,168,76,0.2), 0 0 40px rgba(201,168,76,0.1);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(201,168,76,0.5), 0 0 80px rgba(201,168,76,0.2), 0 0 120px rgba(201,168,76,0.1);
+  }
+}
+
+/* sparkle stars around champion block */
+.podium-block-1st::before {
+  content: '✦';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: var(--gold-shine);
+  animation: starSpin 3s linear infinite;
+  z-index: 2;
+}
+
+@keyframes starSpin {
+  0%   { transform: translateX(-50%) rotate(0deg) translateY(0px); opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { transform: translateX(-50%) rotate(360deg) translateY(-5px); opacity: 1; }
+}
+
+/* ----- PRIZE TABLE: row hover upgrade ----- */
+.prize-table tr:hover td {
+  background: rgba(201, 168, 76, 0.08) !important;
+  border-left: 2px solid rgba(201,168,76,0.4);
+  padding-left: calc(1.2rem - 2px);
+}
+
+/* ----- FAQ: open state glowing left border ----- */
+.faq-item {
+  transition: border-color 0.3s;
+}
+
+.faq-item.open {
+  border-color: rgba(201,168,76,0.4);
+  box-shadow: -3px 0 0 var(--gold-dark);
+}
+
+.faq-item.open .faq-question {
+  color: var(--gold-light);
+  background: rgba(42, 31, 26, 1);
+}
+
+/* ----- CONTACT: person hover card glow ----- */
+.contact-person {
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-person:hover {
+  background: rgba(201,168,76,0.06);
+  transform: translateX(6px);
+  box-shadow: -3px 0 0 var(--gold-dark);
+}
+
+/* ----- GALLERY: caption glow + image saturate on hover ----- */
+.gallery-item-caption {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.gallery-item:hover .gallery-item-caption {
+  text-shadow: 0 0 20px rgba(201,168,76,0.7), 0 2px 10px rgba(0,0,0,0.9);
+  color: var(--gold-shine) !important;
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0px solid var(--gold);
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s, border-width 0.3s;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+  border-width: 2px;
+  box-shadow: inset 0 0 20px rgba(201,168,76,0.15);
+}
+
+/* ----- COUNTDOWN: glassmorphism upgrade ----- */
+.countdown-item {
+  background: rgba(15, 8, 4, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,229,153,0.1);
+}
+
+.countdown-num {
+  font-size: 3rem !important;
+}
+
+/* ----- FOOTER: animated top border shimmer ----- */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-shine), transparent);
+  animation: footerShimmer 5s ease-in-out 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes footerShimmer {
+  0%   { left: -50%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 150%; opacity: 0; }
+}
+
+/* ----- SCROLL REVEALS: stagger via CSS custom props ----- */
+.reveal:nth-child(1)  { transition-delay: 0.0s; }
+.reveal:nth-child(2)  { transition-delay: 0.1s; }
+.reveal:nth-child(3)  { transition-delay: 0.2s; }
+.reveal:nth-child(4)  { transition-delay: 0.3s; }
+.reveal:nth-child(5)  { transition-delay: 0.4s; }
+.reveal:nth-child(6)  { transition-delay: 0.5s; }
+
+/* ----- VALOR QUOTE: animated border shimmer ----- */
+.valor-quote {
+  background: linear-gradient(135deg, rgba(42,20,8,0.55), rgba(26,10,46,0.4)) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+
+.valor-quote:hover {
+  box-shadow: 0 0 30px rgba(201,168,76,0.12), inset 0 0 20px rgba(201,168,76,0.05);
+  transform: translateY(-3px);
+}
+
+/* ----- REG CARDS: top shimmer line animate on hover ----- */
+.reg-card::before {
+  transition: opacity 0.3s;
+}
+
+.reg-card:hover::before {
+  animation: regCardShimmer 1.5s ease infinite;
+}
+
+@keyframes regCardShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ----- NAV CTA: shimmer sweep on hover ----- */
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0s;
+  pointer-events: none;
+}
+
+.nav-cta:hover::before {
+  left: 150%;
+  transition: left 0.4s ease;
+}
+
+/* ----- SPLASH KNIGHT: breathing glow ----- */
+#splashKnight {
+  max-width: 220px;
+  filter: drop-shadow(0 0 20px rgba(201,168,76,0.4));
+  animation: knightGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes knightGlow {
+  from { filter: drop-shadow(0 0 10px rgba(139,26,26,0.5)) brightness(0.9); }
+  to   { filter: drop-shadow(0 0 40px rgba(201,168,76,0.7)) brightness(1.1); }
+}
+
+/* ================================================
+   📱 MOBILE & PHONE PREMIUM ENHANCEMENTS
+   ================================================ */
+
+/* ── 1. SPLASH SCREEN MOBILE FIX & UPGRADE ────── */
+@media (max-width: 768px) {
+  #splash {
+    /* Fill entire viewport including notch/home bar */
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh; /* dynamic viewport height — fixes iOS address bar overlap */
+    padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 16px)
+             env(safe-area-inset-bottom, 30px) env(safe-area-inset-left, 16px);
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 30% 0%, #3a0a0a 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 0%, #1a0a2e 0%, transparent 55%),
+      var(--ink);
+    box-sizing: border-box;
+    z-index: 999999; /* above page-transition-overlay */
+    gap: 0.6rem;
+  }
+
+  #splashKnight {
+    max-width: min(55vw, 190px);
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .splash-title {
+    font-size: clamp(1.4rem, 7vw, 2.4rem);
+    margin: 0.5rem 0 0.2rem;
+    padding: 0 1rem;
+  }
+
+  .splash-sub {
+    font-size: clamp(0.55rem, 2.5vw, 0.75rem);
+    letter-spacing: 0.3em;
+    padding: 0 1rem;
+  }
+
+  .splash-line {
+    width: min(160px, 70vw);
+    margin: 0.8rem 0;
+  }
+
+  .splash-tournament-title {
+    font-size: clamp(0.55rem, 2.8vw, 0.7rem);
+    letter-spacing: 0.15em;
+    padding: 0 1.5rem;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .splash-enter {
+    font-size: clamp(0.6rem, 3vw, 0.75rem);
+    padding: 0.9rem 1.8rem;
+    letter-spacing: 0.2em;
+    margin-top: 0.4rem;
+    /* Large touch target */
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ── 2. PAGE TRANSITIONS: mobile horizontal style ── */
+@media (max-width: 768px) {
+  /* On mobile, use a single-panel horizontal wipe instead of 4 vertical panels */
+  #page-transition-overlay {
+    flex-direction: row; /* horizontal panels */
+  }
+
+  .pt-panel {
+    flex: 1;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(180deg, var(--crimson-dark) 0%, #0d0804 40%, var(--gold-dark) 100%);
+  }
+
+  /* Covering: panels sweep from left to right */
+  #page-transition-overlay.is-covering .pt-panel {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Revealing: panels retract to the right */
+  #page-transition-overlay.is-revealing .pt-panel {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  /* Smoother, slightly faster transitions on mobile */
+  .pt-panel:nth-child(1) { transition: transform 0.28s cubic-bezier(0.77, 0, 0.175, 1) 0s; }
+  .pt-panel:nth-child(2) { transition: transform 0.28s cubic-bezier(0.77, 0, 0.175, 1) 0.04s; }
+  .pt-panel:nth-child(3) { transition: transform 0.28s cubic-bezier(0.77, 0, 0.175, 1) 0.08s; }
+  .pt-panel:nth-child(4) { transition: transform 0.28s cubic-bezier(0.77, 0, 0.175, 1) 0.12s; }
+
+  .pt-sigil {
+    font-size: 3.5rem;
+  }
+
+  /* Gentler page body entry on mobile */
+  body {
+    animation: pageBodyIn 0.5s ease 0.05s both;
+  }
+}
+
+/* ── 3. NAVIGATION MOBILE ──────────────────────── */
+@media (max-width: 768px) {
+  .nav-inner {
+    height: 60px;
+    padding: 0 1rem;
+  }
+
+  .nav-logo-icon {
+    height: 32px;
+  }
+
+  .nav-logo-text {
+    font-size: 0.72rem;
+  }
+
+  /* Mobile menu panel: glass morphism */
+  .nav-links {
+    background: rgba(8, 4, 2, 0.97) !important;
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border-left: 1px solid rgba(201, 168, 76, 0.25) !important;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+    padding-top: 90px !important;
+  }
+
+  .nav-links li a {
+    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    display: block;
+    transition: all 0.3s;
+    border-radius: 4px;
+  }
+
+  .nav-links li a:hover {
+    background: rgba(201,168,76,0.06);
+    padding-left: 1.5rem;
+  }
+
+  .nav-cta {
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.2rem !important;
+  }
+}
+
+/* ── 4. HERO MOBILE ────────────────────────────── */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 100svh; /* short viewport height for mobile */
+    padding-top: 60px;
+  }
+
+  .hero-content {
+    padding: 1.5rem 1.2rem 4rem;
+  }
+
+  .hero-organizer {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title-main {
+    font-size: clamp(3rem, 18vw, 5rem);
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.4));
+  }
+
+  .hero-title-sub {
+    font-size: clamp(1.4rem, 8vw, 2.2rem);
+  }
+
+  .hero-dates {
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-date-card {
+    min-width: unset;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+  }
+
+  .hero-date-value {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-sword-left,
+  .hero-sword-right {
+    font-size: 5rem;
+    opacity: 0.03;
+  }
+
+  #hero::after {
+    letter-spacing: 1.2rem;
+    font-size: 1.4rem;
+    bottom: 5%;
+  }
+}
+
+/* ── 5. COUNTDOWN MOBILE ──────────────────────── */
+@media (max-width: 768px) {
+  .countdown-wrapper {
+    gap: 0.6rem;
+    margin: 1.2rem 0;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+  }
+
+  .countdown-num {
+    font-size: 2rem !important;
+  }
+
+  .countdown-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+  }
+
+  .countdown-sep {
+    font-size: 1.5rem;
+    line-height: 2;
+  }
+
+  .hero-countdown-title {
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    padding: 0 1rem;
+  }
+}
+
+/* ── 6. CREST BANNER MOBILE ───────────────────── */
+@media (max-width: 768px) {
+  .crest-inner {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .crest-item {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* ── 7. SECTION HEADERS MOBILE ────────────────── */
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 7vw, 2.4rem) !important;
+  }
+
+  section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #tournaments,
+  #schedule,
+  #prizes,
+  #chessboard,
+  #register,
+  #faq,
+  #contact {
+    padding: 5rem 1.2rem;
+  }
+}
+
+/* ── 8. TOURNAMENT CARDS MOBILE ───────────────── */
+@media (max-width: 768px) {
+  .tournament-card {
+    border-radius: 12px;
+  }
+
+  .tournament-card:hover {
+    /* No 3D tilt on mobile — too jarring */
+    transform: translateY(-6px) scale(1.01) !important;
+  }
+
+  .card-banner {
+    height: 160px;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .card-name {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .info-value {
+    font-size: 1rem;
+  }
+
+  .card-cta {
+    font-size: 0.82rem;
+    padding: 1rem;
+    min-height: 48px;
+  }
+}
+
+/* ── 9. GALLERY MOBILE ────────────────────────── */
+@media (max-width: 768px) {
+  #gallery {
+    padding: 4rem 0;
+  }
+
+  .gallery-item {
+    width: 260px;
+    height: 190px;
+  }
+
+  /* On mobile, show caption always (not just on hover) */
+  .gallery-item-caption {
+    bottom: 0 !important;
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .gallery-item::after {
+    display: none; /* skip border overlay on mobile */
+  }
+}
+
+/* ── 10. SCHEDULE MOBILE ──────────────────────── */
+@media (max-width: 768px) {
+  .schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .schedule-item {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    gap: 0.8rem;
+  }
+
+  /* Disable slide-right on mobile (can feel clunky) */
+  .schedule-item:hover {
+    transform: none;
+  }
+
+  .schedule-time {
+    font-size: 0.65rem;
+    min-width: 110px;
+  }
+
+  .schedule-event {
+    font-size: 0.88rem;
+  }
+
+  .schedule-tabs {
+    width: 100%;
+  }
+
+  .tab-btn {
+    flex: 1;
+    font-size: 0.68rem;
+    padding: 0.7rem 0.5rem;
+  }
+}
+
+/* ── 11. PRIZES MOBILE ────────────────────────── */
+@media (max-width: 768px) {
+  .prize-podium {
+    gap: 0.6rem;
+  }
+
+  .podium-item {
+    min-width: 90px;
+    max-width: 120px;
+  }
+
+  .podium-block {
+    padding: 1rem 0.6rem 0.8rem;
+  }
+
+  .podium-block-1st {
+    min-height: 130px;
+  }
+
+  .podium-block-2nd {
+    min-height: 100px;
+  }
+
+  .podium-block-3rd {
+    min-height: 80px;
+  }
+
+  .podium-prize {
+    font-size: 1rem;
+  }
+
+  .podium-place {
+    font-size: 0.55rem;
+  }
+
+  .prize-table th,
+  .prize-table td {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .prizes-tabs {
+    width: 100%;
+  }
+}
+
+/* ── 12. CHESSBOARD MOBILE ────────────────────── */
+@media (max-width: 550px) {
+  .chess-container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .chess-board {
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(8, 40px);
+  }
+
+  .chess-cell {
+    font-size: 1.4rem;
+  }
+
+  .chess-layout-wrapper {
+    flex-direction: column;
+  }
+}
+
+/* ── 13. REGISTRATION MOBILE ──────────────────── */
+@media (max-width: 768px) {
+  .deadline-alert {
+    font-size: 0.72rem;
+    padding: 0.8rem 1rem;
+    max-width: 100%;
+  }
+
+  .fee-table th,
+  .fee-table td {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .reg-card {
+    padding: 1.5rem;
+  }
+
+  .reg-btn {
+    font-size: 0.7rem;
+    padding: 0.75rem 1.2rem;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .payment-box {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+/* ── 14. FAQ MOBILE ───────────────────────────── */
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 0.78rem;
+    padding: 1rem 1.2rem;
+    min-height: 56px;
+  }
+
+  .faq-answer {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-answer {
+    padding: 1rem 1.2rem;
+  }
+
+  .brochure-btn {
+    flex: 1 1 100%;
+    min-width: unset;
+    font-size: 0.7rem;
+    padding: 0.8rem 1rem;
+    min-height: 52px;
+  }
+}
+
+/* ── 15. CONTACT MOBILE ───────────────────────── */
+@media (max-width: 768px) {
+  .contact-person:hover {
+    transform: none; /* avoid shift on touch */
+  }
+
+  .contact-email-box {
+    padding: 1.2rem;
+  }
+}
+
+/* ── 16. FOOTER MOBILE ────────────────────────── */
+@media (max-width: 768px) {
+  footer {
+    padding: 3rem 1.2rem 2rem;
+    /* Safe area bottom for home bar */
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-logo-pill {
+    padding: 1.5rem 1.5rem;
+    gap: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .pill-logo {
+    max-width: 100px;
+    max-height: 55px;
+  }
+
+  .usm-logo {
+    max-width: 130px;
+  }
+
+  .footer-copyright {
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+}
+
+/* ── 17. TEAM PAGE MOBILE ─────────────────────── */
+@media (max-width: 768px) {
+  .team-tabs-container {
+    gap: 0.4rem;
+    padding: 0.7rem;
+    border-radius: 14px;
+    margin-bottom: 2rem;
+  }
+
+  .team-tab {
+    font-size: 0.68rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .dept-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Dept photo banner: full width, taller aspect on mobile */
+  .dept-photo-banner {
+    aspect-ratio: 16 / 7;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  /* Wrapper min-height smaller on mobile */
+  .team-departments-wrapper {
+    min-height: 400px;
+  }
+
+  /* SMALLER COMPACT CARDS — 3 per row on phones */
+  .member-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0 0.4rem;
+    max-width: 100%;
+  }
+
+  .member-photo-card {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  }
+
+  /* Shrink the portrait frame on mobile */
+  .member-photo-frame {
+    aspect-ratio: 1 / 1; /* square crop on mobile to save space */
+    border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  }
+
+  /* Placeholder chess piece smaller */
+  .member-photo-frame::before {
+    font-size: 2.5rem;
+  }
+
+  /* Compact text below photo */
+  .member-name {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.15rem;
+    padding: 0 0.4rem;
+    line-height: 1.2;
+  }
+
+  .member-role {
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    padding: 0 0.4rem;
+    line-height: 1.3;
+  }
+}
+
+/* Very small phones: 2 cards per row */
+@media (max-width: 380px) {
+  .member-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .member-name {
+    font-size: 0.82rem;
+  }
+
+  .member-role {
+    font-size: 0.5rem;
+  }
+}
+
+/* ── 18. TOUCH: disable hover-only effects on mobile ── */
+@media (hover: none) and (pointer: coarse) {
+  /* These are touch-only devices */
+  .tournament-card:hover {
+    transform: none !important;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  /* Active press effects instead */
+  .btn-primary:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.97);
+    background: rgba(201, 168, 76, 0.06);
+  }
+
+  .card-cta:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+
+  .schedule-item:active {
+    background: rgba(42, 31, 26, 0.95) !important;
+    border-left-color: var(--gold) !important;
+  }
+
+  /* Disable shimmer animations that rely on hover */
+  .tournament-card:hover .card-content::before {
+    width: 0%;
+  }
+
+  /* Disable desktop 3D perspective on cards */
+  .tournament-card {
+    transform-style: flat;
+  }
+}
+
+/* ── 19. VERY SMALL PHONES (≤380px) ───────────── */
+@media (max-width: 380px) {
+  .hero-title-main {
+    font-size: clamp(2.6rem, 18vw, 3.8rem);
+  }
+
+  .hero-title-sub {
+    font-size: clamp(1.2rem, 7vw, 1.8rem);
+  }
+
+  .countdown-num {
+    font-size: 1.6rem !important;
+  }
+
+  .countdown-item {
+    min-width: 52px;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .countdown-sep {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 8vw, 2rem) !important;
+  }
+
+  #splashKnight {
+    max-width: 45vw;
+  }
+
+  .splash-title {
+    font-size: clamp(1.2rem, 8vw, 1.8rem);
+  }
 }
