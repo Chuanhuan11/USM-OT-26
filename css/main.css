@@ -4089,10 +4089,22 @@ footer::before {
 }
 
 /* ── 3. NAVIGATION MOBILE ──────────────────────── */
+
+/* Hide the raw checkbox — it's only used for state */
+#mobileMenuCheck {
+  display: none;
+}
+
+/* Hamburger button: hidden on desktop, shown on mobile */
+.mobile-menu-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .nav-inner {
     height: 60px;
     padding: 0 1rem;
+    position: relative;
   }
 
   .nav-logo-icon {
@@ -4103,23 +4115,82 @@ footer::before {
     font-size: 0.72rem;
   }
 
-  /* Mobile menu panel: glass morphism */
+  /* Show the hamburger icon on mobile */
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10001;
+    position: relative;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Animate hamburger → X when menu is open */
+  #mobileMenuCheck:checked ~ .mobile-menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  #mobileMenuCheck:checked ~ .mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #mobileMenuCheck:checked ~ .mobile-menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Nav links: hidden off-screen to the right by default */
   .nav-links {
-    background: rgba(8, 4, 2, 0.97) !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 75vw !important;
+    max-width: 300px !important;
+    height: 100dvh !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    padding: 80px 1.2rem 2rem !important;
+    background: rgba(8, 4, 2, 0.98) !important;
     backdrop-filter: blur(20px) saturate(1.5);
     -webkit-backdrop-filter: blur(20px) saturate(1.5);
     border-left: 1px solid rgba(201, 168, 76, 0.25) !important;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
-    padding-top: 90px !important;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 10000;
+    list-style: none;
+  }
+
+  /* Slide in when checkbox is checked */
+  #mobileMenuCheck:checked ~ .nav-links {
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    width: 100%;
   }
 
   .nav-links li a {
     font-size: 0.85rem;
-    padding: 0.7rem 1rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid rgba(201,168,76,0.07);
     display: block;
     transition: all 0.3s;
     border-radius: 4px;
+    width: 100%;
   }
 
   .nav-links li a:hover {
@@ -4130,6 +4201,27 @@ footer::before {
   .nav-cta {
     margin-top: 0.5rem;
     padding: 0.7rem 1.2rem !important;
+    width: 100%;
+    text-align: center;
+    display: block !important;
+  }
+
+  /* Dim overlay behind the open menu */
+  nav::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 9999;
+  }
+
+  #mobileMenuCheck:checked ~ * + *::before,
+  nav:has(#mobileMenuCheck:checked)::after {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
