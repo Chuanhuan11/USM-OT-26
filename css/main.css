@@ -4083,9 +4083,7 @@ footer::before {
   }
 
   /* Gentler page body entry on mobile */
-  body {
-    animation: pageBodyIn 0.5s ease 0.05s both;
-  }
+  body {}
 }
 
 /* ── 3. NAVIGATION MOBILE ──────────────────────── */
@@ -4101,31 +4099,31 @@ footer::before {
 }
 
 @media (max-width: 768px) {
+  /* Nav bar height */
   .nav-inner {
     height: 60px;
     padding: 0 1rem;
     position: relative;
+    /* CRITICAL: ensure nav-inner doesn't try to size nav-links */
+    overflow: visible;
   }
 
-  .nav-logo-icon {
-    height: 32px;
-  }
+  .nav-logo-icon { height: 32px; }
+  .nav-logo-text { font-size: 0.72rem; }
 
-  .nav-logo-text {
-    font-size: 0.72rem;
-  }
-
-  /* Show the hamburger icon on mobile */
+  /* ── HAMBURGER ICON ── */
   .mobile-menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
-    z-index: 10001;
     position: relative;
+    z-index: 10002; /* above nav-links panel */
+    flex-shrink: 0;
   }
 
   .mobile-menu-toggle span {
@@ -4138,7 +4136,7 @@ footer::before {
     transform-origin: center;
   }
 
-  /* Animate hamburger → X when menu is open */
+  /* Hamburger → X when open */
   #mobileMenuCheck:checked ~ .mobile-menu-toggle span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -4150,14 +4148,26 @@ footer::before {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* Nav links: hidden off-screen to the right by default */
+  /* ══════════════════════════════════════════════
+     OFF-CANVAS SIDEBAR — out of document flow.
+     Main content is NEVER affected by this panel.
+     ══════════════════════════════════════════════ */
   .nav-links {
+    /* Break out of document flow entirely */
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+
+    /* Sizing */
     width: 75vw !important;
     max-width: 300px !important;
-    height: 100dvh !important;
+    height: 100% !important;
+    height: 100dvh !important; /* dynamic viewport for mobile browsers */
+
+    /* Stack layout */
+    display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 0 !important;
@@ -4167,16 +4177,22 @@ footer::before {
     -webkit-backdrop-filter: blur(20px) saturate(1.5);
     border-left: 1px solid rgba(201, 168, 76, 0.25) !important;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
-    z-index: 10000;
-    list-style: none;
+    list-style: none !important;
+
+    /* CLOSED: off-screen right + invisible */
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.35s !important;
+    z-index: 10001 !important;
   }
 
-  /* Slide in when checkbox is checked */
+  /* OPEN state: slide in */
   #mobileMenuCheck:checked ~ .nav-links {
-    transform: translateX(0);
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0s !important;
   }
 
   .nav-links li {
@@ -4206,22 +4222,27 @@ footer::before {
     display: block !important;
   }
 
-  /* Dim overlay behind the open menu */
-  nav::after {
+  /* ── BACKDROP ──
+     body::after lives in the ROOT stacking context:
+     page (0) < backdrop (9998) < nav (9999) < sidebar (10001)
+  ── */
+  body::after {
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease;
-    z-index: 9999;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+    z-index: 9998;
   }
 
-  #mobileMenuCheck:checked ~ * + *::before,
-  nav:has(#mobileMenuCheck:checked)::after {
+  body:has(#mobileMenuCheck:checked)::after {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition: opacity 0.35s ease, visibility 0s linear 0s;
   }
 }
 
