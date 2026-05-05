@@ -317,6 +317,28 @@ nav {
   animation: fadeUp 1.2s ease 0.6s both;
 }
 
+/* Magical core backlight behind the logo */
+.hero-title-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.5) 0%, rgba(13, 8, 6, 0) 70%);
+  filter: blur(50px);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  animation: corePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes corePulse {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
 .hero-main-logo {
   max-width: 90%;
   width: 750px;
