@@ -822,7 +822,10 @@
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     target.classList.add('active');
-                    // Scrolling behavior removed per user request
+                    // Scroll to top of departments wrapper smoothly ONLY on desktop
+                    if (window.innerWidth > 768) {
+                        target.closest('.team-departments-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 });
             });
         }
