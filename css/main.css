@@ -2224,7 +2224,7 @@ nav {
   width: 180px;
   height: 100px;
   object-fit: contain;
-  filter: grayscale(100%) brightness(0.7) opacity(0.6);
+  filter: grayscale(0%) brightness(0.9) opacity(0.9);
   transition: all 0.4s ease;
   cursor: pointer;
 }
@@ -3604,11 +3604,9 @@ body {
 @keyframes pageBodyIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
