@@ -2721,6 +2721,7 @@ nav {
 }
 
 .dept-photo-banner .dept-photo-label {
+  display: none; /* User requested to remove text inside photo */
   position: absolute;
   bottom: 1.2rem;
   left: 1.5rem;
@@ -4690,12 +4691,17 @@ footer::before {
   .dept-photo-banner {
     aspect-ratio: 16 / 7;
     border-radius: 8px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
-  /* Wrapper min-height smaller on mobile */
+  /* Wrapper min-height smaller on mobile to reduce empty space */
   .team-departments-wrapper {
-    min-height: 400px;
+    min-height: 250px;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-spaced {
+    margin-top: 1.5rem;
   }
 
   /* SMALLER COMPACT CARDS — 3 per row on phones */
