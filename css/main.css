@@ -141,8 +141,7 @@ nav {
   border-bottom: 2px solid var(--gold-dark);
   backdrop-filter: blur(12px);
   padding: 0 2rem;
-  will-change: transform, backdrop-filter;
-  transform: translateZ(0);
+  /* Removed transform to prevent iOS fixed positioning bug */
 }
 
 .nav-inner {
@@ -324,10 +323,9 @@ nav {
   height: auto;
   display: block;
   margin: 0 auto;
-  /* Premium layered drop-shadow for depth and glow */
-  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.6))
-          drop-shadow(0 0 30px rgba(201, 168, 76, 0.4))
-          drop-shadow(0 0 60px rgba(201, 168, 76, 0.15));
+  /* Soft white light glow */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))
+          drop-shadow(0 0 40px rgba(255, 255, 255, 0.1));
   /* Subtle continuous floating animation */
   animation: heroLogoFloat 6s ease-in-out infinite;
   transform: translateZ(0); /* Hardware acceleration */
@@ -2175,8 +2173,6 @@ footer {
 /* ===== NAV ACTIVE STATE ===== */
 nav {
   border-bottom: 2px solid rgba(212, 168, 67, 0.3);
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 /* ===== SECTION BG PATTERNS ===== */
@@ -2747,7 +2743,7 @@ nav {
 
 /* ===== STRUCTURED PHOTO CARDS ===== */
 .member-grid {
-  display: grid;
+  display: none; /* Hidden until individual photos are ready */
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 3rem;
   justify-items: center;
