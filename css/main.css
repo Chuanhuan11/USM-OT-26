@@ -320,11 +320,26 @@ nav {
 
 .hero-main-logo {
   max-width: 90%;
-  width: 700px;
+  width: 750px;
   height: auto;
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.3));
+  /* Premium layered drop-shadow for depth and glow */
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 30px rgba(201, 168, 76, 0.4))
+          drop-shadow(0 0 60px rgba(201, 168, 76, 0.15));
+  /* Subtle continuous floating animation */
+  animation: heroLogoFloat 6s ease-in-out infinite;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+@keyframes heroLogoFloat {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+  }
+  50% {
+    transform: translateY(-12px) translateZ(0);
+  }
 }
 
 .hero-edition {
