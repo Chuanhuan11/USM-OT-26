@@ -822,8 +822,7 @@
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     target.classList.add('active');
-                    // Scroll to top of departments wrapper smoothly
-                    target.closest('.team-departments-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Scrolling behavior removed per user request
                 });
             });
         }
