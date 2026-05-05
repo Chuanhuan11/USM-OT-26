@@ -38,8 +38,8 @@ img {
   user-select: none;
   /* Prevent long-press context menu on iOS */
   -webkit-touch-callout: none;
-  /* Pointer events stay on so hover effects work */
-  pointer-events: auto;
+  /* Disable pointer events to completely block right-click/long-press downloads */
+  pointer-events: none;
 }
 
 html {
@@ -218,6 +218,7 @@ nav {
 }
 
 .nav-cta {
+  display: inline-block;
   background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 25%, var(--gold-shine) 50%, var(--gold) 75%, var(--gold-dark) 100%);
   background-size: 200% auto;
   animation: shimmerSweep 3s linear infinite;
@@ -313,57 +314,17 @@ nav {
 
 .hero-title-wrapper {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   animation: fadeUp 1.2s ease 0.6s both;
 }
 
-.hero-title-main {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(3rem, 9vw, 8rem);
-  font-weight: 900;
-  line-height: 0.85;
-  background: linear-gradient(180deg, #f0d080 0%, var(--gold) 40%, #8b6914 70%, #c9a84c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
-  filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.3));
-  letter-spacing: -0.02em;
-}
-
-.hero-title-sub {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(1.8rem, 4.5vw, 4.5rem);
-  font-weight: 400;
-  background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 0.05em;
-}
-
-.hero-divider {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 1.5rem 0;
-  animation: fadeIn 1s ease 1s both;
-}
-
-.hero-divider-line {
-  height: 1px;
-  width: 100px;
-  background: linear-gradient(to right, transparent, var(--gold));
-}
-
-.hero-divider-line:last-child {
-  background: linear-gradient(to left, transparent, var(--gold));
-}
-
-.hero-divider-icon {
-  font-size: 1.5rem;
-  color: var(--gold);
+.hero-main-logo {
+  max-width: 90%;
+  width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.3));
 }
 
 .hero-edition {
@@ -2500,7 +2461,7 @@ nav {
 
 .gallery-item-caption {
   position: absolute;
-  bottom: -40px;
+  bottom: 0;
   left: 0;
   width: 100%;
   padding: 1.5rem;
@@ -4657,12 +4618,12 @@ footer::before {
   }
 
   .pill-logo {
-    max-width: 100px;
-    max-height: 55px;
+    max-width: 150px;
+    max-height: 80px;
   }
 
   .usm-logo {
-    max-width: 130px;
+    max-width: 180px;
   }
 
   .footer-copyright {

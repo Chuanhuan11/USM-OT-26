@@ -899,3 +899,10 @@ document.addEventListener('click', (e) => {
     protectImages();
   }
 })();
+// Disable right-click and drag on all images
+document.addEventListener('contextmenu', event => {
+  if (event.target.tagName === 'IMG') {
+    event.preventDefault();
+  }
+});
+
