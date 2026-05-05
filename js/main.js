@@ -652,6 +652,8 @@ if (galleryWrapper) {
   let isHovered = false;
   let isDragging = false;
   let startX, scrollLeft;
+  let isGalleryVisible = false;
+  let animationFrameId = null;
 
   // Track hover to pause auto-scroll
   galleryWrapper.addEventListener('mouseenter', () => isHovered = true);
@@ -681,23 +683,42 @@ if (galleryWrapper) {
 
   // Auto-scroller loop
   function autoScrollGallery() {
+    if (!isGalleryVisible) return; // PAUSE if off-screen
+
     if (!isHovered && !isDragging) {
       galleryWrapper.scrollLeft += 1;
     }
 
     // Reset scroll position for seamless loop in BOTH directions
-    // Track consists of exactly two identical halves.
     if (galleryWrapper.scrollLeft >= galleryWrapper.scrollWidth / 2) {
       galleryWrapper.scrollLeft -= galleryWrapper.scrollWidth / 2;
     } else if (galleryWrapper.scrollLeft <= 0) {
       galleryWrapper.scrollLeft += galleryWrapper.scrollWidth / 2;
     }
 
-    requestAnimationFrame(autoScrollGallery);
+    animationFrameId = requestAnimationFrame(autoScrollGallery);
   }
 
-  // Start auto-scroll
-  requestAnimationFrame(autoScrollGallery);
+  // Use IntersectionObserver to start/stop the animation based on visibility
+  const galleryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isGalleryVisible = entry.isIntersecting;
+      if (isGalleryVisible) {
+        // Start animation if it isn't running
+        if (!animationFrameId) {
+           animationFrameId = requestAnimationFrame(autoScrollGallery);
+        }
+      } else {
+        // Stop animation
+        if (animationFrameId) {
+           cancelAnimationFrame(animationFrameId);
+           animationFrameId = null;
+        }
+      }
+    });
+  }, { threshold: 0 });
+
+  galleryObserver.observe(galleryWrapper);
 }
 
 // ===== MOBILE MENU TOGGLE =====

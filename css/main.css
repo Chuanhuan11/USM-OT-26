@@ -44,6 +44,8 @@ img {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -52,6 +54,7 @@ body {
   font-family: 'Crimson Text', serif;
   font-size: 18px;
   overflow-x: hidden;
+  width: 100%;
   cursor: default;
 }
 
@@ -89,6 +92,8 @@ body {
   border-radius: 50%;
   animation: floatEmber linear infinite;
   opacity: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 @keyframes floatEmber {
@@ -136,6 +141,8 @@ nav {
   border-bottom: 2px solid var(--gold-dark);
   backdrop-filter: blur(12px);
   padding: 0 2rem;
+  will-change: transform, backdrop-filter;
+  transform: translateZ(0);
 }
 
 .nav-inner {
@@ -2192,6 +2199,8 @@ footer {
 /* ===== NAV ACTIVE STATE ===== */
 nav {
   border-bottom: 2px solid rgba(212, 168, 67, 0.3);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* ===== SECTION BG PATTERNS ===== */
@@ -2230,6 +2239,8 @@ nav {
   align-items: center;
   width: max-content;
   animation: marqueeScroll 30s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Pause the rotation on hover */
@@ -2431,6 +2442,8 @@ nav {
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   scrollbar-width: none;
+  will-change: transform, scroll-position;
+  transform: translateZ(0);
   /* Firefox */
   -ms-overflow-style: none;
   /* IE */
@@ -2472,6 +2485,7 @@ nav {
   object-fit: cover;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   filter: grayscale(40%) brightness(0.8);
+  aspect-ratio: 4 / 3;
 }
 
 .gallery-item::before {
@@ -3441,6 +3455,7 @@ nav {
   border: 1px solid var(--gold-dark);
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+  aspect-ratio: 3 / 4;
   object-fit: contain;
 }
 
