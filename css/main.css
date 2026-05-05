@@ -323,8 +323,8 @@ nav {
   height: auto;
   display: block;
   margin: 0 auto;
-  /* Enhanced brightness and thematic golden glow */
-  filter: brightness(1.15) contrast(1.05)
+  /* Enhanced brightness, saturation for vivid reds, and thematic golden glow */
+  filter: brightness(1.15) contrast(1.05) saturate(1.4)
           drop-shadow(0 0 25px rgba(201, 168, 76, 0.4))
           drop-shadow(0 0 50px rgba(201, 168, 76, 0.15));
   /* Subtle continuous floating animation */
