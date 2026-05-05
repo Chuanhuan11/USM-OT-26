@@ -2215,23 +2215,26 @@ nav {
   transform: translateZ(0);
 }
 
-/* Pause the rotation on hover */
-.sponsor-track:hover {
-  animation-play-state: paused;
-}
+/* Hover pause removed per user request */
 
 .sponsor-logo {
   width: 180px;
   height: 100px;
   object-fit: contain;
-  filter: grayscale(0%) brightness(0.9) opacity(0.9);
+  filter: brightness(0.95) opacity(0.95);
   transition: all 0.4s ease;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.85); /* Ensures dark text is legible */
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .sponsor-logo:hover {
-  filter: grayscale(0%) brightness(1) opacity(1) drop-shadow(0 0 15px rgba(201, 168, 76, 0.5));
+  background: rgba(255, 255, 255, 1);
+  filter: brightness(1) opacity(1);
   transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.6);
 }
 
 @keyframes marqueeScroll {
