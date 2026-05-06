@@ -950,7 +950,7 @@ section::after {
 }
 
 .schedule-item:hover {
-  transform: translateY(-2px) scale(1.05);
+  transform: scale(1.05);
 }
 
 .schedule-item.highlight {
@@ -3948,15 +3948,10 @@ nav::after {
   filter: drop-shadow(0 0 16px rgba(201,168,76,0.4));
 }
 
-/* ----- SCHEDULE: hover left-border pulse ----- */
-.schedule-item {
-  transition: all 0.3s ease, border-left-color 0.3s ease;
-}
-
+/* ----- SCHEDULE: hover lift ----- */
 .schedule-item:hover {
-  border-left-color: var(--gold) !important;
-  transform: translateX(5px);
-  background: rgba(42, 31, 26, 0.95) !important;
+  transform: scale(1.05);
+  color: var(--gold-light);
 }
 
 /* ----- PRIZE PODIUM: champion glow upgrade ----- */
@@ -4706,8 +4701,18 @@ footer::before {
     font-size: 0.85rem;
   }
 
-  .prizes-tabs {
+  .prizes-tabs, .schedule-tabs, .faq-tabs {
     width: 100%;
+    display: flex;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .prizes-tabs .tab-btn, .schedule-tabs .tab-btn, .faq-tabs .tab-btn {
+    flex: 1;
+    padding: 0.7rem 0.4rem;
+    font-size: 0.62rem;
+    white-space: nowrap;
   }
 }
 
@@ -4955,8 +4960,7 @@ footer::before {
   }
 
   .schedule-item:active {
-    background: rgba(42, 31, 26, 0.95) !important;
-    border-left-color: var(--gold) !important;
+    transform: scale(0.98);
   }
 
   /* Disable shimmer animations that rely on hover */
