@@ -251,28 +251,35 @@ nav {
   justify-content: center;
   overflow: hidden;
   padding-top: 70px;
-  background: 
-    linear-gradient(to right, rgba(122, 15, 15, 0.7) 0%, rgba(15, 30, 122, 0.7) 100%),
-    url('../images/Background.jpg') center/cover no-repeat;
+  background-image: url('../images/Background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-bg-chess {
+#hero::before {
+  content: '';
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  opacity: 0.04;
+  background: linear-gradient(to right, 
+    rgba(176, 42, 42, 0.65) 0%, 
+    rgba(139, 26, 26, 0.4) 30%, 
+    rgba(13, 8, 6, 0) 50%, 
+    rgba(26, 45, 139, 0.4) 70%, 
+    rgba(14, 26, 90, 0.65) 100%);
+  z-index: 1;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(13, 8, 6, 0.5) 100%);
+  z-index: 2;
   pointer-events: none;
 }
 
-.hero-bg-chess div:nth-child(odd) {
-  background: var(--parchment);
-}
 
-.hero-bg-chess div:nth-child(even) {
-  background: transparent;
-}
 
 .hero-vignette {
   position: absolute;
@@ -345,9 +352,9 @@ nav {
   display: block;
   margin: 0 auto;
   /* Enhanced brightness, saturation for vivid reds, and thematic golden glow */
-  filter: brightness(1.15) contrast(1.05) saturate(1.4)
-          drop-shadow(0 0 25px rgba(201, 168, 76, 0.4))
-          drop-shadow(0 0 50px rgba(201, 168, 76, 0.15));
+  filter: brightness(1.25) contrast(1.1) saturate(1.6)
+          drop-shadow(0 0 30px rgba(201, 168, 76, 0.5))
+          drop-shadow(0 0 60px rgba(201, 168, 76, 0.25));
   /* Subtle continuous floating animation */
   animation: heroLogoFloat 6s ease-in-out infinite;
   transform: translateZ(0); /* Hardware acceleration */
@@ -382,14 +389,17 @@ nav {
 }
 
 .hero-date-card {
-  background: rgba(139, 26, 26, 0.2);
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  border-radius: 4px;
-  padding: 1rem 1.5rem;
-  min-width: 180px;
+  background: rgba(20, 10, 6, 0.65);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 6px;
+  padding: 1.2rem 2rem;
+  min-width: 200px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .hero-date-card::before {
