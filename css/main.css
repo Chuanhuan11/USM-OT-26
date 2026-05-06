@@ -302,7 +302,8 @@ nav {
   font-size: 0.75rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: #000000;
+  font-weight: 800;
   margin-bottom: 1.5rem;
   animation: fadeDown 1s ease 0.2s both;
 }
@@ -351,10 +352,10 @@ nav {
   height: auto;
   display: block;
   margin: 0 auto;
+  /* Blend mode to remove white background from the logo image */
+  mix-blend-mode: multiply;
   /* Enhanced brightness, saturation for vivid reds, and thematic golden glow */
-  filter: brightness(1.25) contrast(1.1) saturate(1.6)
-          drop-shadow(0 0 30px rgba(201, 168, 76, 0.5))
-          drop-shadow(0 0 60px rgba(201, 168, 76, 0.25));
+  filter: brightness(1.1) contrast(1.2);
   /* Subtle continuous floating animation */
   animation: heroLogoFloat 6s ease-in-out infinite;
   transform: translateZ(0); /* Hardware acceleration */
@@ -371,10 +372,11 @@ nav {
 
 .hero-edition {
   font-family: 'Cinzel', serif;
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--silver);
+  color: #000000;
+  font-weight: 800;
   margin-bottom: 2rem;
   animation: fadeIn 1s ease 1.2s both;
 }
