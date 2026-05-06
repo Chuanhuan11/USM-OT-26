@@ -3466,7 +3466,7 @@ nav {
 
   .podium-item {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
 
   .podium-item:nth-child(1) {
@@ -4663,54 +4663,36 @@ footer::before {
 /* ── 11. PRIZES MOBILE ────────────────────────── */
 @media (max-width: 768px) {
   .prize-podium {
-    gap: 1.5rem;
+    gap: 0.6rem;
   }
 
   .podium-item {
-    min-width: 100%;
-    max-width: 100%;
+    min-width: 90px;
+    max-width: 120px;
   }
 
   .podium-block {
-    padding: 2rem 1rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, rgba(42, 31, 26, 0.9), rgba(26, 18, 12, 0.95));
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 1rem 0.6rem 0.8rem;
   }
 
   .podium-block-1st {
-    min-height: 160px;
-    border: 1px solid var(--gold);
-    background: linear-gradient(135deg, rgba(62, 46, 12, 0.9), rgba(26, 18, 12, 0.95));
-    animation: dragonBreath 2s ease-in-out infinite alternate;
+    min-height: 130px;
+  }
+
+  .podium-block-2nd {
+    min-height: 100px;
+  }
+
+  .podium-block-3rd {
+    min-height: 80px;
   }
 
   .podium-prize {
-    font-size: 1.8rem;
-    margin: 0.5rem 0;
+    font-size: 1rem;
   }
 
   .podium-place {
-    font-size: 0.75rem;
-    color: var(--gold-light);
-    letter-spacing: 0.3em;
-    font-weight: 800;
-  }
-
-  .podium-detail {
-    font-size: 0.9rem;
-    opacity: 0.9;
-  }
-
-  .podium-num {
-    font-size: 2.5rem;
-    opacity: 0.15;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: 900;
+    font-size: 0.55rem;
   }
 
   .prize-table th,
