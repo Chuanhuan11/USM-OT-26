@@ -251,10 +251,9 @@ nav {
   justify-content: center;
   overflow: hidden;
   padding-top: 70px;
-  background:
-    radial-gradient(ellipse at 30% 0%, #3a0a0a 0%, transparent 55%),
-    radial-gradient(ellipse at 70% 0%, #1a0a2e 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, #1a0a06 0%, var(--dark-bg) 60%);
+  background: 
+    linear-gradient(to right, rgba(122, 15, 15, 0.7) 0%, rgba(15, 30, 122, 0.7) 100%),
+    url('../images/Background.jpg') center/cover no-repeat;
 }
 
 .hero-bg-chess {
@@ -850,49 +849,158 @@ section::after {
 }
 
 .schedule-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  max-width: 900px;
+  position: relative;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Central Timeline Line */
+.schedule-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    var(--gold-dark) 15%, 
+    var(--gold) 50%, 
+    var(--gold-dark) 85%, 
+    transparent 100%);
+  transform: translateX(-50%);
+  opacity: 0.6;
 }
 
 .schedule-item {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  background: rgba(42, 31, 26, 0.6);
+  position: relative;
+  width: 45%;
+  background: rgba(42, 31, 26, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2;
+}
+
+/* Timeline Markers (Dots) */
+.schedule-item::after {
+  content: '◈';
+  position: absolute;
+  top: 50%;
+  font-size: 1.2rem;
+  color: var(--gold);
+  transform: translateY(-50%);
+  z-index: 3;
+  text-shadow: 0 0 10px var(--gold);
+}
+
+/* Odd items (Left side) */
+.schedule-item:nth-child(odd) {
+  align-self: flex-start;
+  text-align: right;
+  border-right: 3px solid var(--gold-dark);
+}
+
+.schedule-item:nth-child(odd)::after {
+  right: -11.1%; /* Adjust based on gap and width */
+}
+
+/* Even items (Right side) */
+.schedule-item:nth-child(even) {
+  align-self: flex-end;
+  text-align: left;
   border-left: 3px solid var(--gold-dark);
-  padding: 1rem 1.2rem;
-  transition: all 0.3s;
+}
+
+.schedule-item:nth-child(even)::after {
+  left: -11.1%;
 }
 
 .schedule-item:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-  background: rgba(42, 31, 26, 0.9);
+  background: rgba(42, 31, 26, 0.8);
+  border-color: var(--gold);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 168, 76, 0.2);
 }
 
 .schedule-item.highlight {
-  border-left-color: var(--crimson);
-  background: rgba(139, 26, 26, 0.2);
+  border-color: var(--crimson);
+  background: rgba(139, 26, 26, 0.15);
 }
 
 .schedule-item.break {
-  border-left-color: var(--stone-light);
+  border-color: var(--stone-light);
+  background: rgba(30, 21, 16, 0.4);
 }
 
 .schedule-time {
   font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  color: var(--gold);
-  min-width: 130px;
-  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  font-weight: 700;
+  display: block;
 }
 
 .schedule-event {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: var(--parchment);
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+}
+
+/* Connecting horizontal lines (optional for extra flair) */
+.schedule-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 10%;
+  height: 1px;
+  background: rgba(201, 168, 76, 0.3);
+  z-index: 1;
+}
+
+.schedule-item:nth-child(odd)::before {
+  right: -10%;
+}
+
+.schedule-item:nth-child(even)::before {
+  left: -10%;
+}
+
+@media (max-width: 850px) {
+  .schedule-grid::before {
+    left: 20px;
+  }
+
+  .schedule-item {
+    width: calc(100% - 60px);
+    align-self: flex-end !important;
+    text-align: left !important;
+    margin-left: 60px !important;
+    border-left: 3px solid var(--gold-dark) !important;
+    border-right: 1px solid rgba(201, 168, 76, 0.15) !important;
+  }
+
+  .schedule-item::after {
+    left: -48px !important;
+    right: auto !important;
+  }
+
+  .schedule-item::before {
+    left: -40px !important;
+    width: 40px !important;
+  }
 }
 
 /* ===== PRIZES ===== */
@@ -1083,6 +1191,8 @@ section::after {
   display: grid;
   grid-template-columns: repeat(8, 60px);
   grid-template-rows: repeat(8, 60px);
+  background: #2a1a10;
+  border: 2px solid #3d2a1d;
 }
 
 @media (max-width: 550px) {
@@ -1098,57 +1208,55 @@ section::after {
   justify-content: center;
   cursor: pointer;
   position: relative;
-  transition: all 0.15s;
-  font-size: 2.2rem;
-  color: var(--ink);
-  /* Dark color so objects appear on light backgrounds */
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
-  /* Glow to make objects pop on dark backgrounds */
-}
-
-@media (max-width: 550px) {
-  .chess-cell {
-    font-size: 1.6rem;
-  }
+  transition: background 0.15s;
 }
 
 .chess-cell.light {
-  background: var(--parchment);
+  background: #f0d9b5;
 }
 
 .chess-cell.dark {
-  background: #8b4513;
+  background: #b58863;
 }
 
 .chess-cell.selected {
-  background: rgba(201, 168, 76, 0.7) !important;
+  background: #f6f669 !important;
 }
 
 .chess-cell.in-check {
-  background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 0%, rgba(200, 0, 0, 0.4) 60%, transparent 100%) !important;
-  box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.6);
+  background: radial-gradient(circle, #ff4d4d 0%, #b58863 100%) !important;
 }
 
 .chess-cell.valid-move::after {
   content: '';
   position: absolute;
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.15);
   pointer-events: none;
 }
 
 .chess-cell.valid-move.occupied::after {
   width: 90%;
   height: 90%;
-  border-radius: 0;
+  border-radius: 50%;
   background: transparent;
-  border: 3px solid rgba(0, 0, 0, 0.3);
+  border: 4px solid rgba(0, 0, 0, 0.15);
 }
 
-.chess-cell:hover {
-  filter: brightness(1.1);
+.chess-piece-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.2s;
+}
+
+.chess-cell:hover .chess-piece-img {
+  transform: scale(1.05);
 }
 
 .chess-status {
@@ -4464,43 +4572,7 @@ footer::before {
   }
 }
 
-/* ── 10. SCHEDULE MOBILE ──────────────────────── */
-@media (max-width: 768px) {
-  .schedule-grid {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
 
-  .schedule-item {
-    padding: 0.8rem 1rem;
-    border-radius: 6px;
-    gap: 0.8rem;
-  }
-
-  /* Disable slide-right on mobile (can feel clunky) */
-  .schedule-item:hover {
-    transform: none;
-  }
-
-  .schedule-time {
-    font-size: 0.65rem;
-    min-width: 110px;
-  }
-
-  .schedule-event {
-    font-size: 0.88rem;
-  }
-
-  .schedule-tabs {
-    width: 100%;
-  }
-
-  .tab-btn {
-    flex: 1;
-    font-size: 0.68rem;
-    padding: 0.7rem 0.5rem;
-  }
-}
 
 /* ── 11. PRIZES MOBILE ────────────────────────── */
 @media (max-width: 768px) {

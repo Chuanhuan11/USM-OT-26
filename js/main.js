@@ -98,8 +98,18 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
 
 // ===== INTERACTIVE CHESS =====
 const PIECES = {
-  wK: '\u2654', wQ: '\u2655', wR: '\u2656', wB: '\u2657', wN: '\u2658', wP: '\u2659',
-  bK: '\u265A', bQ: '\u265B', bR: '\u265C', bB: '\u265D', bN: '\u265E', bP: '\u265F'
+  wK: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg',
+  wQ: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg',
+  wR: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg',
+  wB: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg',
+  wN: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg',
+  wP: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg',
+  bK: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg',
+  bQ: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg',
+  bR: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg',
+  bB: 'https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg',
+  bN: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg',
+  bP: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg'
 };
 
 let boardState = [];
@@ -378,7 +388,10 @@ function renderBoard() {
       cell.classList.add((dr + dc) % 2 === 0 ? 'light' : 'dark');
       cell.dataset.r = dr; cell.dataset.c = dc;
       if (boardState[dr][dc]) {
-        cell.textContent = PIECES[boardState[dr][dc]];
+        const pieceImg = document.createElement('img');
+        pieceImg.src = PIECES[boardState[dr][dc]];
+        pieceImg.classList.add('chess-piece-img');
+        cell.appendChild(pieceImg);
         if (boardState[dr][dc] === 'wK' && isWhiteInCheck) cell.classList.add('in-check');
         if (boardState[dr][dc] === 'bK' && isBlackInCheck) cell.classList.add('in-check');
       }
@@ -579,8 +592,10 @@ function showPromotionModal(color) {
     { type: 'N', sym: isW ? '♘' : '♞' }
   ];
 
-  options.innerHTML = pieces.map(p =>
-    `<button class="promo-btn" onclick="processPromotion('${p.type}')">${p.sym}</button>`
+  options.innerHTML = pieces.map(p => 
+    `<button class="promo-btn" onclick="processPromotion('${p.type}')">
+      <img src="${PIECES[color + p.type]}" alt="${p.type}" style="width: 50px; height: 50px;">
+    </button>`
   ).join('');
 
   modal.classList.remove('hide');
