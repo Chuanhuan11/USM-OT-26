@@ -162,9 +162,9 @@ nav {
 
 .nav-logo-icon {
   height: 40px;
-  /* Adjust size based on design */
   width: auto;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .nav-logo-text {
@@ -4270,7 +4270,11 @@ footer::before {
     overflow: visible;
   }
 
-  .nav-logo-icon { height: 32px; }
+  .nav-logo-icon { 
+    height: 32px; 
+    width: auto !important;
+    flex-shrink: 0;
+  }
   .nav-logo-text { font-size: 0.72rem; }
 
   /* ── HAMBURGER ICON ── */
