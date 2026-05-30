@@ -2389,56 +2389,99 @@ nav {
   position: relative;
 }
 
+/* ===== CATEGORIZED SPONSORS ===== */
 .sponsor-marquee-wrapper {
   width: 100%;
   overflow: hidden;
   position: relative;
-  /* Masks the edges with a subtle fade so logos don't just abruptly vanish */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .sponsor-track {
   display: flex;
-  gap: 4rem;
-  align-items: center;
+  gap: 2rem;
+  align-items: stretch;
   width: max-content;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 40s linear infinite;
   will-change: transform;
   transform: translateZ(0);
-}
-
-/* Hover pause removed per user request */
-
-.sponsor-logo {
-  width: 180px;
-  height: 100px;
-  object-fit: contain;
-  filter: brightness(0.95) opacity(0.95);
-  transition: all 0.4s ease;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.85); /* Ensures dark text is legible */
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
-.sponsor-logo:hover {
-  background: rgba(255, 255, 255, 1);
-  filter: brightness(1) opacity(1);
-  transform: scale(1.1);
-  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.6);
 }
 
 @keyframes marqueeScroll {
   0% {
     transform: translateX(0);
   }
-
   100% {
-    /* scroll exactly half the original width to loop seamlessly */
-    transform: translateX(calc(-50% - 2rem));
+    transform: translateX(calc(-50% - 1rem));
   }
+}
+
+.sponsor-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+}
+
+.sponsor-logo-container {
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.sponsor-logo-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-placeholder {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3rem;
+  color: #333;
+  opacity: 0.5;
+}
+
+.sponsor-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--parchment);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sponsor-tier {
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.sponsor-card-cash {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.05), transparent);
 }
 
 /* ===== RICHER PODIUM ===== */
