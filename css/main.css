@@ -2464,19 +2464,23 @@ nav {
 
 .sponsor-name {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  color: var(--parchment);
+  font-size: 1.15rem;
+  color: #ffffff;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .sponsor-tier {
-  font-size: 0.75rem;
-  color: var(--gold-light);
+  font-size: 0.85rem;
+  color: var(--gold);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-align: center;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .sponsor-card-cash {
